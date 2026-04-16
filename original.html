@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoundationCo — Building Dreams in 3D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--accent:#f4a55a;--white:#fdf6ec;--dark:#0e0b06;}
+    html,body{height:100%;background:var(--dark);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;display:block;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(to bottom,rgba(0,0,0,.6),transparent);}
+    .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.12em;text-shadow:0 2px 12px rgba(0,0,0,.5);}
+    .logo span{color:var(--accent);}
+    nav ul{list-style:none;display:flex;gap:36px;}
+    nav ul li a{text-decoration:none;color:var(--white);font-size:.9rem;font-weight:500;letter-spacing:.05em;opacity:.85;transition:opacity .2s,color .2s;}
+    nav ul li a:hover{opacity:1;color:var(--accent);}
+
+    .hero{position:relative;z-index:10;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;padding-top:60px;}
+    .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,7.5rem);line-height:.93;letter-spacing:.08em;text-shadow:0 4px 32px rgba(0,0,0,.7);opacity:0;animation:fadeUp 1s 1s ease-out forwards;}
+    .hero h1 span{color:var(--accent);}
+    .hero p{margin-top:16px;font-size:1.05rem;font-weight:300;letter-spacing:.15em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.6);opacity:0;animation:fadeUp 1s 1.3s ease-out forwards;}
+    .hero-btns{margin-top:32px;display:flex;gap:16px;opacity:0;animation:fadeUp 1s 1.6s ease-out forwards;pointer-events:all;}
+    .btn{padding:14px 38px;border:none;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;letter-spacing:.08em;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;}
+    .btn:hover{transform:translateY(-3px);}
+    .btn-primary{background:var(--accent);color:#1a1208;box-shadow:0 4px 20px rgba(244,165,90,.45);}
+    .btn-primary:hover{box-shadow:0 8px 32px rgba(244,165,90,.7);}
+    .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.4);}
+    .btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.08);}
+
+    #progress-wrap{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:100;text-align:center;opacity:1;transition:opacity 1.2s;}
+    #progress-wrap.hidden{opacity:0;pointer-events:none;}
+    #progress-label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-bottom:8px;}
+    #progress-bar-bg{width:220px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;}
+    #progress-bar{height:3px;width:0%;background:var(--accent);border-radius:2px;transition:width .3s;}
+
+    .scroll-hint{position:fixed;bottom:28px;right:40px;z-index:100;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s 3s ease-out forwards;}
+    .scroll-hint svg{animation:bounce 1.8s ease-in-out infinite;}
+    @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+    .below{position:relative;z-index:10;background:var(--dark);}
+    .stats{padding:70px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;border-top:1px solid rgba(255,255,255,.06);}
+    .stat-val{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--accent);}
+    .stat-label{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;opacity:.45;margin-top:4px;}
+    .services{padding:100px 48px;background:#0a0805;}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:.08em;margin-bottom:10px;}
+    .section-sub{opacity:.4;font-size:.9rem;font-weight:300;text-transform:uppercase;letter-spacing:.14em;margin-bottom:56px;}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:36px 28px;transition:background .3s,transform .3s;}
+    .card:hover{background:rgba(255,255,255,.06);transform:translateY(-4px);}
+    .card-icon{font-size:2rem;margin-bottom:16px;}
+    .card h3{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.06em;color:var(--accent);margin-bottom:10px;}
+    .card p{font-size:.88rem;opacity:.55;line-height:1.75;}
+    footer{background:#070503;padding:34px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);}
+    footer p{opacity:.3;font-size:.82rem;}
+    .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;opacity:.45;}
+    .footer-logo span{color:var(--accent);opacity:1;}
+    @media(max-width:768px){nav ul{display:none;}nav{padding:16px 24px;}.stats{grid-template-columns:repeat(2,1fr);}.cards{grid-template-columns:1fr;}.services,footer{padding:60px 24px;}}
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <div class="logo">Foundation<span>Co</span></div>
+  <ul>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="progress-wrap">
+  <div id="progress-label">Building your future…</div>
+  <div id="progress-bar-bg"><div id="progress-bar"></div></div>
+</div>
+
+<div class="hero">
+  <h1>We Build<br/><span>Your Vision</span></h1>
+  <p>Premium Construction &amp; Development</p>
+  <div class="hero-btns">
+    <a href="#services" class="btn btn-primary">Get a Quote</a>
+    <a href="#services" class="btn btn-outline">Our Projects</a>
+  </div>
+</div>
+
+<div class="scroll-hint">
+  Scroll to explore
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M8 3v10M4 9l4 4 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<div class="below">
+  <div class="stats">
+    <div><div class="stat-val">24+</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-val">840</div><div class="stat-label">Projects Built</div></div>
+    <div><div class="stat-val">99%</div><div class="stat-label">Client Satisfaction</div></div>
+    <div><div class="stat-val">12</div><div class="stat-label">Industry Awards</div></div>
+  </div>
+  <section class="services" id="services">
+    <div class="section-title">What We Build</div>
+    <div class="section-sub">End-to-end construction services</div>
+    <div class="cards">
+      <div class="card"><div class="card-icon">🏠</div><h3>Residential Homes</h3><p>Custom-designed homes built to the highest standards. From foundations to finishing touches, every detail matters.</p></div>
+      <div class="card"><div class="card-icon">🏢</div><h3>Commercial Buildings</h3><p>Modern office spaces, retail outlets, and mixed-use developments delivered on time and on budget.</p></div>
+      <div class="card"><div class="card-icon">🔨</div><h3>Renovations</h3><p>Transform your existing space with expert renovation services. We breathe new life into any structure.</p></div>
+      <div class="card"><div class="card-icon">📐</div><h3>Architectural Design</h3><p>In-house design team turning your concepts into detailed, buildable plans with precision and creativity.</p></div>
+      <div class="card"><div class="card-icon">🔧</div><h3>Structural Engineering</h3><p>Certified engineers ensuring every project meets safety codes, load requirements, and longevity standards.</p></div>
+      <div class="card"><div class="card-icon">🌿</div><h3>Green Construction</h3><p>Eco-friendly building practices using sustainable materials and energy-efficient systems for a better tomorrow.</p></div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Foundation<span>Co</span></div>
+    <p>© 2026 FoundationCo. All rights reserved.</p>
+    <p style="opacity:.25;font-size:.78rem;">Built with Pride.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x7a4a1a, 0.016);
+
+  const camera = new THREE.PerspectiveCamera(52, window.innerWidth/window.innerHeight, 0.1, 300);
+  camera.position.set(14, 8, 20);
+  camera.lookAt(0, 3.5, 0);
+
+  // ── LIGHTS ──
+  scene.add(new THREE.AmbientLight(0xffeedd, 0.5));
+
+  const sun = new THREE.DirectionalLight(0xffcc88, 2.5);
+  sun.position.set(25, 35, 15);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048,2048);
+  sun.shadow.camera.near = 1; sun.shadow.camera.far = 120;
+  sun.shadow.camera.left = -35; sun.shadow.camera.right = 35;
+  sun.shadow.camera.top = 35; sun.shadow.camera.bottom = -35;
+  sun.shadow.bias = -0.0005;
+  scene.add(sun);
+
+  const fill = new THREE.PointLight(0xff7722, 1.4, 60);
+  fill.position.set(-12, 10, 8);
+  scene.add(fill);
+
+  scene.add(new THREE.HemisphereLight(0xffd080, 0x6a3a10, 0.7));
+
+  // ── SKY DOME ──
+  const skyMat = new THREE.ShaderMaterial({
+    side: THREE.BackSide,
+    uniforms: {uTime:{value:0}},
+    vertexShader:`varying vec3 vPos;void main(){vPos=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:`
+      uniform float uTime; varying vec3 vPos;
+      void main(){
+        float t=clamp((vPos.y+30.)/120.,0.,1.);
+        vec3 top=vec3(0.08,0.18,0.52);
+        vec3 mid=vec3(0.78,0.35,0.10);
+        vec3 bot=vec3(0.95,0.70,0.25);
+        vec3 c=mix(bot,mid,smoothstep(0.,.45,t));
+        c=mix(c,top,smoothstep(0.35,1.,t));
+        c+=0.025*sin(uTime*0.25);
+        gl_FragColor=vec4(c,1.);
+      }
+    `
+  });
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(120,16,16), skyMat));
+
+  // Sun disc
+  const sunDisc = new THREE.Mesh(new THREE.CircleGeometry(3.5,32), new THREE.MeshBasicMaterial({color:0xfffbe0}));
+  sunDisc.position.set(-28,28,-90); sunDisc.lookAt(camera.position); scene.add(sunDisc);
+  const sunHalo = new THREE.Mesh(new THREE.CircleGeometry(8,32), new THREE.MeshBasicMaterial({color:0xffaa44,transparent:true,opacity:.15}));
+  sunHalo.position.copy(sunDisc.position); sunHalo.lookAt(camera.position); scene.add(sunHalo);
+
+  // ── GROUND ──
+  const gnd = new THREE.Mesh(new THREE.PlaneGeometry(150,150), new THREE.MeshLambertMaterial({color:0x4a7a32}));
+  gnd.rotation.x=-Math.PI/2; gnd.receiveShadow=true; scene.add(gnd);
+  const dirt = new THREE.Mesh(new THREE.PlaneGeometry(22,18), new THREE.MeshLambertMaterial({color:0x8c5a28}));
+  dirt.rotation.x=-Math.PI/2; dirt.position.y=0.01; dirt.receiveShadow=true; scene.add(dirt);
+  // Path
+  const pathM = new THREE.Mesh(new THREE.BoxGeometry(3,.03,14), new THREE.MeshLambertMaterial({color:0xa07840}));
+  pathM.position.set(0,.02,8); pathM.receiveShadow=true; scene.add(pathM);
+
+  // ── HELPERS ──
+  function mstd(col,rough=0.82,metal=0){return new THREE.MeshStandardMaterial({color:col,roughness:rough,metalness:metal});}
+  function bbox(w,h,d,col,r,m){
+    const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mstd(col,r,m));
+    mesh.castShadow=true; mesh.receiveShadow=true; return mesh;
+  }
+
+  // ── HOUSE ──
+  const house = new THREE.Group(); scene.add(house);
+  const buildParts=[];
+
+  function part(mesh,delay,dur){
+    mesh.scale.y=0.001; mesh.userData.d=delay; mesh.userData.dur=dur;
+    buildParts.push(mesh);
+  }
+
+  // Foundation
+  const fnd=bbox(9,.55,8,0xb0a090,.92); fnd.position.set(0,.27,0); house.add(fnd); part(fnd,0,.07);
+
+  // Walls
+  const fwall=bbox(9,5.2,.35,0xd4a86a,.84); fwall.position.set(0,2.87,4.17); house.add(fwall); part(fwall,.07,.18);
+  const bwall=bbox(9,5.2,.35,0xc89858,.84); bwall.position.set(0,2.87,-4.17); house.add(bwall); part(bwall,.07,.18);
+  const lwall=bbox(.35,5.2,8.35,0xcc9460,.84); lwall.position.set(-4.5,2.87,0); house.add(lwall); part(lwall,.10,.18);
+  const rwall=bbox(.35,5.2,8.35,0xcc9460,.84); rwall.position.set(4.5,2.87,0); house.add(rwall); part(rwall,.10,.18);
+
+  // Brick rows on front wall
+  for(let row=0;row<6;row++){
+    for(let col=0;col<7;col++){
+      const off=(row%2===0)?0:.58;
+      const brk=bbox(1.1,.36,.08,(row%2===0)?0xc08050:0xd4a060,.9);
+      brk.position.set(-3.3+col*1.12+off,.65+row*.56,4.19);
+      house.add(brk); part(brk,.08+row*.022+col*.003,.05);
+    }
+  }
+
+  // Door
+  const dframe=bbox(1.8,3.2,.4,0x7a4a22,.72); dframe.position.set(0,2.1,4.2); house.add(dframe); part(dframe,.25,.09);
+  const door=bbox(1.45,2.85,.12,0x5a3010,.65); door.position.set(0,1.92,4.28); house.add(door); part(door,.27,.08);
+  const knob=new THREE.Mesh(new THREE.SphereGeometry(.1,8,8),mstd(0xf0c040,.2,.85));
+  knob.position.set(.56,1.75,4.38); knob.castShadow=true; house.add(knob); part(knob,.29,.05);
+
+  // Windows
+  function mkWin(x,y,z,ry=0){
+    const wg=new THREE.Group();
+    const fr=bbox(1.8,1.6,.18,0x8a6030,.72); wg.add(fr);
+    const gl=new THREE.Mesh(new THREE.BoxGeometry(1.5,1.3,.06),new THREE.MeshStandardMaterial({color:0x88c8f8,roughness:.08,metalness:.1,transparent:true,opacity:.78}));
+    gl.position.z=.09; wg.add(gl);
+    const hb=bbox(1.5,.07,.1,0x8a6030,.7); hb.position.z=.13; wg.add(hb);
+    const vb=bbox(.07,1.3,.1,0x8a6030,.7); vb.position.z=.13; wg.add(vb);
+    wg.position.set(x,y,z); wg.rotation.y=ry;
+    house.add(wg); return wg;
+  }
+  part(mkWin(-2.7,3.6,4.18),.30,.09);
+  part(mkWin( 2.7,3.6,4.18),.32,.09);
+  part(mkWin(-4.18,3.6,1.5,Math.PI/2),.34,.09);
+  part(mkWin(-4.18,3.6,-1.5,Math.PI/2),.36,.09);
+
+  // Roof group
+  const roofG=new THREE.Group(); house.add(roofG); part(roofG,.44,.16);
+  // Ridge peak line
+  const ridgeH=8.2, wallTop=5.55;
+  // Left slope panel
+  const ls=bbox(9.8,.28,5.2,0x7a3820,.88); ls.rotation.z=Math.PI/5.5; ls.position.set(-2.55,6.6,0); roofG.add(ls);
+  const rs=bbox(9.8,.28,5.2,0x7a3820,.88); rs.rotation.z=-Math.PI/5.5; rs.position.set(2.55,6.6,0); roofG.add(rs);
+  // Gable triangles
+  const gshape=new THREE.Shape();
+  gshape.moveTo(-4.5,wallTop); gshape.lineTo(4.5,wallTop); gshape.lineTo(0,ridgeH); gshape.closePath();
+  const gext={depth:.3,bevelEnabled:false};
+  const gb1=new THREE.Mesh(new THREE.ExtrudeGeometry(gshape,gext),mstd(0xd4a86a,.9));
+  gb1.position.set(-4.5,0,-.15); gb1.rotation.y=Math.PI/2; gb1.castShadow=true; roofG.add(gb1);
+  const gb2=new THREE.Mesh(new THREE.ExtrudeGeometry(gshape,gext),mstd(0xd4a86a,.9));
+  gb2.position.set(4.5,0,.15); gb2.rotation.y=-Math.PI/2; gb2.castShadow=true; roofG.add(gb2);
+  // Ridge cap
+  const ridge=bbox(9.8,.22,.22,0x601c0a,.8); ridge.position.set(0,8.1,0); roofG.add(ridge);
+  // Shingle strips
+  for(let i=0;i<5;i++){
+    const sh=bbox(9.8,.05,4.8,0x5a2810,.95);
+    sh.rotation.z=Math.PI/5.5; sh.position.set(-2.55,5.8+i*.52,0); roofG.add(sh);
+    const sh2=bbox(9.8,.05,4.8,0x5a2810,.95);
+    sh2.rotation.z=-Math.PI/5.5; sh2.position.set(2.55,5.8+i*.52,0); roofG.add(sh2);
+  }
+
+  // Chimney
+  const chimG=new THREE.Group();
+  const chbody=bbox(1.1,3.2,1.1,0xc09058,.9); chbody.position.y=1.6; chimG.add(chbody);
+  const chcap=bbox(1.3,.2,1.3,0x888070,.95); chcap.position.y=3.3; chimG.add(chcap);
+  chimG.position.set(2.8,6.8,-1.8); chimG.scale.y=0.001; house.add(chimG); part(chimG,.60,.10);
+
+  // Porch steps
+  for(let i=0;i<3;i++){
+    const st=bbox(2.8-.3*i,.28,.55,0xb0a090,.9);
+    st.position.set(0,.14+i*.28,4.6+i*.35); house.add(st); part(st,.38+i*.02,.06);
+  }
+
+  // ── SCAFFOLDING ──
+  const scaff=new THREE.Group(); scaff.position.set(5.8,0,0); scene.add(scaff);
+  function spole(x,z,h){const p=bbox(.14,h,.14,0xa0a8b8,.3,.75);p.position.set(x,h/2,z);scaff.add(p);}
+  function splank(y){const pl=bbox(1.6,.14,1.4,0xb87030,.82);pl.position.set(0,y,0);scaff.add(pl);}
+  spole(-.7,-.6,8);spole(.7,-.6,8);spole(-.7,.6,8);spole(.7,.6,8);
+  splank(2);splank(4.2);splank(6.5);
+  for(let h=0;h<4;h++){
+    const br=bbox(1.45,.07,.07,0x9098b0,.4,.6);br.position.set(0,1+h*2,-.6);br.rotation.z=Math.PI/4;scaff.add(br);
+  }
+
+  // ── CRANE ──
+  const craneG=new THREE.Group(); craneG.position.set(10,0,-3); scene.add(craneG);
+  // Mast
+  const mast=bbox(.55,14,.55,0xf0c040,.45,.45); mast.position.y=7; craneG.add(mast);
+  // Jib
+  const jib=bbox(12,.38,.38,0xf0c040,.45,.45); jib.position.set(-4,14,0); craneG.add(jib);
+  const cjib=bbox(4,.32,.32,0xf0c040,.45,.45); cjib.position.set(5,14,0); craneG.add(cjib);
+  const cwt=bbox(1.6,1.4,1.2,0x888888,.6,.25); cwt.position.set(7,13.4,0); craneG.add(cwt);
+  // Lattice braces on mast
+  for(let i=0;i<6;i++){
+    const la=bbox(.1,3,.1,0xe0b030,.5,.4);la.position.set(.32,1.5+i*2.2,.32);la.rotation.y=Math.PI/4;craneG.add(la);
+  }
+  // Cable
+  const cableGeo=new THREE.CylinderGeometry(.035,.035,7,6);
+  const cable=new THREE.Mesh(cableGeo,new THREE.MeshBasicMaterial({color:0x888888}));
+  cable.position.set(-9,10.5,0); craneG.add(cable);
+  // Hook
+  const hkGeo=new THREE.TorusGeometry(.26,.07,8,18,Math.PI);
+  const hk=new THREE.Mesh(hkGeo,mstd(0x909090,.35,.8)); hk.position.set(-9,7,0); hk.rotation.z=Math.PI; craneG.add(hk);
+  // Hanging load - brick pallet
+  const pallet=bbox(1.2,1,1,0xd4a86a,.9); pallet.position.set(-9,6.1,0); craneG.add(pallet);
+
+  // ── TREES ──
+  function tree(x,z,s=1){
+    const tg=new THREE.Group();
+    const tr=bbox(.32*s,1.8*s,.32*s,0x7a5020,.9); tr.position.y=.9*s; tg.add(tr);
+    const f=new THREE.Mesh(new THREE.ConeGeometry(1.4*s,2.8*s,7),new THREE.MeshLambertMaterial({color:0x2a6020}));
+    f.position.y=3.1*s; f.castShadow=true; tg.add(f);
+    const f2=new THREE.Mesh(new THREE.ConeGeometry(1.0*s,2.2*s,7),new THREE.MeshLambertMaterial({color:0x336a24}));
+    f2.position.y=4.4*s; f2.castShadow=true; tg.add(f2);
+    tg.position.set(x,0,z); scene.add(tg);
+  }
+  tree(-11,-5,1.3);tree(-13,2,1.0);tree(-10,6,.85);tree(-14,8,.7);
+  tree(12,-4,1.1);tree(14,3,.9);tree(12,7,1.2);tree(15,9,.75);
+  tree(-7,-9,.8);tree(8,-10,.95);tree(-5,12,.7);tree(9,11,.8);
+
+  // ── MATERIAL PILES ──
+  for(let i=0;i<8;i++){
+    const pl=bbox(2.2+Math.random(),.16,.35+Math.random()*.15,0xb87030,.85);
+    pl.position.set(-7.5+Math.random()*.6,.14+i*.13,-3.5+Math.random()*.5);
+    pl.rotation.y=(Math.random()-.5)*.3; scene.add(pl);
+  }
+  for(let i=0;i<12;i++){
+    const br=bbox(.52,.24,.28,0xc04030,.9);
+    br.position.set(-7.8+Math.floor(i%4)*.55,.12+Math.floor(i/4)*.26,-5.5+(i%3)*.1);
+    br.castShadow=true; scene.add(br);
+  }
+  const sandG=new THREE.Mesh(new THREE.CylinderGeometry(.1,2,1.4,12),mstd(0xe8c870,.95));
+  sandG.position.set(-8,.7,3); sandG.castShadow=true; scene.add(sandG);
+  // Cement mixer (cylinder)
+  const mixG=new THREE.Group(); mixG.position.set(7.5,0,4);
+  const mxb=bbox(1.5,.6,1.5,0x888888,.7,.2); mxb.position.y=.3; mixG.add(mxb);
+  const mxdr=new THREE.Mesh(new THREE.CylinderGeometry(.65,.65,1.8,12),mstd(0xf4a020,.6,.1));
+  mxdr.rotation.z=Math.PI/4; mxdr.position.set(0,1.4,0); mixG.add(mxdr);
+  scene.add(mixG);
+
+  // ── SMOKE ──
+  const smokes=[];
+  for(let i=0;i<16;i++){
+    const sm=new THREE.Mesh(new THREE.SphereGeometry(.22+Math.random()*.28,6,6),
+      new THREE.MeshBasicMaterial({color:0xbbbbbb,transparent:true,opacity:.35}));
+    sm.userData.spd=.35+Math.random()*.45;
+    sm.userData.off=Math.random()*Math.PI*2;
+    sm.userData.ox=(Math.random()-.5)*.3;
+    sm.visible=false; scene.add(sm); smokes.push(sm);
+  }
+
+  // ── DUST POINTS ──
+  const dcount=300;
+  const dpos=new Float32Array(dcount*3);
+  for(let i=0;i<dcount;i++){dpos[i*3]=(Math.random()-.5)*24;dpos[i*3+1]=Math.random()*10;dpos[i*3+2]=(Math.random()-.5)*18;}
+  const dgeo=new THREE.BufferGeometry(); dgeo.setAttribute('position',new THREE.BufferAttribute(dpos,3));
+  scene.add(new THREE.Points(dgeo,new THREE.PointsMaterial({color:0xd4a060,size:.08,transparent:true,opacity:.45})));
+
+  // ── ANIMATION ──
+  const clock=new THREE.Clock();
+  let totalT=0;
+  const BUILD_DUR=9.0;
+  const pbar=document.getElementById('progress-bar');
+  const pwrap=document.getElementById('progress-wrap');
+  let camAngle=0;
+  let mouseX=0,mouseY=0;
+  document.addEventListener('mousemove',e=>{mouseX=(e.clientX/window.innerWidth-.5)*2;mouseY=(e.clientY/window.innerHeight-.5)*2;});
+
+  function easeInOut(t){return t<.5?2*t*t:-1+(4-2*t)*t;}
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const dt=clock.getDelta();
+    const el=clock.getElapsedTime();
+    totalT+=dt;
+
+    skyMat.uniforms.uTime.value=el;
+
+    const bp=Math.min(totalT/BUILD_DUR,1.0);
+    pbar.style.width=(bp*100).toFixed(1)+'%';
+    if(bp>=1) pwrap.classList.add('hidden');
+
+    // Build each part
+    buildParts.forEach(p=>{
+      const t=Math.max(0,Math.min(1,(bp-p.userData.d)/p.userData.dur));
+      const sy=easeInOut(t);
+      p.scale.y=Math.max(.001,sy);
+    });
+
+    // Smoke
+    smokes.forEach((sm,i)=>{
+      if(bp<.65){sm.visible=false;return;}
+      sm.visible=true;
+      const raw=(el*sm.userData.spd+sm.userData.off)%5;
+      const t=raw/5;
+      sm.position.set(
+        2.8+sm.userData.ox+Math.sin(el*.8+i)*.15,
+        10.2+t*6,
+        -1.8
+      );
+      sm.material.opacity=.35*(1-t);
+      sm.scale.setScalar(.4+t*2.5);
+    });
+
+    // Dust drift
+    const dp=dgeo.attributes.position.array;
+    for(let i=0;i<dcount;i++){
+      dp[i*3+1]+=.004; dp[i*3]+=Math.sin(el*.4+i)*.0015;
+      if(dp[i*3+1]>10)dp[i*3+1]=0;
+    }
+    dgeo.attributes.position.needsUpdate=true;
+
+    // Crane sway
+    craneG.rotation.y=Math.sin(el*.22)*.22;
+    cable.position.y=10.5+Math.sin(el*.7)*.4;
+    hk.position.y=7+Math.sin(el*.7)*.4;
+    pallet.position.y=6.1+Math.sin(el*.7)*.4;
+
+    // Welding flicker
+    fill.intensity=1.2+Math.sin(el*15)*.2;
+
+    // Camera orbit
+    camAngle+=dt*(window.scrollY<window.innerHeight*.5?.09:.0);
+    const targetX=Math.sin(camAngle+mouseX*.35)*22;
+    const targetZ=Math.cos(camAngle+mouseX*.35)*22;
+    const targetY=8+mouseY*2+Math.sin(el*.12)*.6;
+    camera.position.x+=(targetX-camera.position.x)*.04;
+    camera.position.z+=(targetZ-camera.position.z)*.04;
+    camera.position.y+=(targetY-camera.position.y)*.04;
+    camera.lookAt(0,3.5,0);
+
+    sunHalo.material.opacity=.12+Math.sin(el*.5)*.04;
+
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    camera.aspect=window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+  });
+})();
+</script>
+</body>
+</html>
