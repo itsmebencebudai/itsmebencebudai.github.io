@@ -94,17 +94,18 @@
   .nav-toggle span::after {
     content: '';
     position: absolute;
+    left: 0;
     width: 18px;
     height: 2px;
     background: currentColor;
     border-radius: 1px;
-    transition: transform .25s ease;
+    transition: transform .25s ease, top .25s ease;
   }
-  .nav-toggle span::before { transform: translateY(-6px); }
-  .nav-toggle span::after { transform: translateY(6px); }
+  .nav-toggle span::before { top: 8px; }
+  .nav-toggle span::after { top: -8px; }
   nav.open .nav-toggle span { background: transparent; }
-  nav.open .nav-toggle span::before { transform: rotate(45deg); }
-  nav.open .nav-toggle span::after { transform: rotate(-45deg); }
+  nav.open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
+  nav.open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
 
   /* ── HERO ── */
   .hero {
