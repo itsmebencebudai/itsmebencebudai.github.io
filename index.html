@@ -1,111 +1,1095 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alpha Invest Media Kft. — Building Dreams in 3D</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="page.title">Budai Bence – Junior Szoftverfejlesztő</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0f13;
+    --surface: #16181f;
+    --surface2: #1e2029;
+    --border: #2a2d38;
+    --text: #e8e9ee;
+    --muted: #7c8096;
+    --accent: #5b8dee;
+    --accent2: #a78bfa;
+    --green: #4ade80;
+    --tag-bg: #1e2029;
+    --tag-border: #2e3144;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 60px;
+    background: rgba(14,15,19,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    font-family: 'DM Mono', monospace; letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.nav-project-link {
+    color: var(--text);
+    background: rgba(91,141,238,0.18);
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background .2s, color .2s;
+  }
+  .nav-links a.nav-project-link:hover {
+    background: rgba(91,141,238,0.28);
+    color: var(--accent);
+  }
+  .nav-toggle {
+    display: none;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    position: relative;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle span::before,
+  .nav-toggle span::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform .25s ease;
+  }
+  .nav-toggle span::before { transform: translateY(-6px); }
+  .nav-toggle span::after { transform: translateY(6px); }
+  nav.open .nav-toggle span { background: transparent; }
+  nav.open .nav-toggle span::before { transform: rotate(45deg); }
+  nav.open .nav-toggle span::after { transform: rotate(-45deg); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(91,141,238,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(167,139,250,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  /* subtle grid */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.25;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp .6s .1s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 16px;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--muted);
+    max-width: 480px; line-height: 1.8;
+    margin-bottom: 40px;
+    opacity: 0; animation: fadeUp .6s .35s forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp .6s .5s forwards;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #4a7ce0; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .hero-actions .btn-ghost {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .hero-actions .btn-ghost:hover {
+    background: #4a7ce0;
+    color: #fff;
+  }
+
+  .lang-switcher {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .lang-btn {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .lang-btn.active,
+  .lang-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .status-dot {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: 'DM Mono', monospace; font-size: 12px; color: var(--green);
+    margin-top: 32px;
+    opacity: 0; animation: fadeUp .6s .65s forwards;
+  }
+  .status-dot::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(74,222,128,.5);
+    animation: pulse 2s infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 96px 48px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--text); margin-bottom: 48px;
+    line-height: 1.15;
+  }
+  .section-title span { color: var(--accent); font-style: italic; }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity .2s;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(91,141,238,0.12);
+  }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--surface) 0%, #1a1d2e 100%);
+  }
+  @media (max-width: 720px) { .project-card.featured { grid-column: span 1; } }
+
+  .project-icon {
+    width: 40px; height: 40px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .project-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .project-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.75; margin-bottom: 18px;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    padding: 3px 9px; border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+  .project-status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    padding: 3px 9px; border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .status-active { background: rgba(74,222,128,.08); color: var(--green); border: 1px solid rgba(74,222,128,.2); }
+  .status-wip { background: rgba(250,204,21,.07); color: #facc15; border: 1px solid rgba(250,204,21,.2); }
+  .status-planned { background: rgba(148,163,184,.07); color: #94a3b8; border: 1px solid rgba(148,163,184,.2); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    align-items: stretch;
+  }
+  .skill-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px;
+    min-height: 58px;
+    font-size: 14px; color: var(--text);
+    font-family: 'DM Mono', monospace;
+    transition: border-color .2s;
+  }
+  .skill-item:hover { border-color: var(--accent); }
+  .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .skill-dot.secondary { background: var(--accent2); }
+  .skill-dot.basic { background: var(--muted); }
+
+  /* ── EXPERIENCE / TIMELINE ── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .timeline-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .timeline-column .section-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 48px; }
+  .tl-dot {
+    position: absolute; left: -33px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .tl-date {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--muted); margin-bottom: 6px;
+    letter-spacing: 0.06em;
+  }
+  .tl-title { font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .tl-org { font-size: 14px; color: var(--accent); margin-bottom: 10px; }
+  .tl-body { font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+  /* ── CONTACT ── */
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 48px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(91,141,238,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .contact-email {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    color: var(--text); margin: 20px 0;
+    text-decoration: none;
+    display: block;
+    transition: color .2s;
+  }
+  .contact-email:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.5); }
+    70%  { box-shadow: 0 0 0 7px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .timeline-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 1000px) {
+    nav { padding: 0 20px; }
+    .nav-links {
+      display: flex;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0;
+      background: rgba(14,15,19,0.97);
+      border-top: 1px solid var(--border);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: max-height .3s ease, opacity .3s ease, visibility .3s ease;
+    }
+    .nav-links.open {
+      max-height: 320px;
+      padding: 20px 0;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; width: 100%; padding: 12px 24px; font-size: 14px; text-align: center; }
+    .nav-links a.nav-project-link { margin: 0; }
+    .nav-toggle { display: inline-flex; }
+    .hero { padding: 90px 20px 60px; }
+    section { padding: 64px 20px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+    .contact-box { padding: 32px 20px; }
+  }
+</style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
-
 <nav>
-  <div class="logo">
-    <img src="logo.png" alt="Alpha Invest Media logo" />
-    <div class="logo-text">Alpha Invest<span>Media</span></div>
-  </div>
-  <ul>
-    <li><a href="#services" data-i18n="navServices">Services</a></li>
-    <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
-    <li><a href="#about" data-i18n="navAbout">About</a></li>
-    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+  <a href="#" class="nav-logo" data-i18n="nav.logo">Budai Bence</a>
+  <ul class="nav-links">
+    <li><a href="#projects" data-i18n="nav.projects">Projektek</a></li>
+    <li><a href="#skills" data-i18n="nav.skills">Készségek</a></li>
+    <li><a href="#experience" data-i18n="nav.experience">Tapasztalat</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Kapcsolat</a></li>
+    <li><a href="project/" class="nav-project-link" data-i18n="nav.projectFolder">Ügyfél hozzáférés</a></li>
   </ul>
-  <div class="lang-switch">
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn active" data-lang="hu">HU</button>
+  <div class="lang-switcher">
+    <button type="button" class="lang-btn active" data-lang="hu">HU</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
   </div>
+  <button class="nav-toggle" type="button" aria-label="Toggle navigation"><span></span></button>
 </nav>
 
-<div id="progress-wrap">
-  <div id="progress-label">Building your future…</div>
-  <div id="progress-bar-bg"><div id="progress-bar"></div></div>
-</div>
-
+<!-- ═══ HERO ═══ -->
 <div class="hero">
-  <h1><span data-i18n="heroTitle">We Build</span><br/><span data-i18n="heroTitleHighlight">Your Vision</span></h1>
-  <p data-i18n="heroSubtitle">Premium Construction &amp; Development</p>
-  <div class="hero-btns">
-    <a href="#services" class="btn btn-primary" data-i18n="heroQuoteBtn">Get a Quote</a>
-    <a href="#services" class="btn btn-outline" data-i18n="heroProjectsBtn">Our Projects</a>
+  <div class="hero-inner">
+    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Budai Bence · Budapest, HU</p>
+    <h1 class="hero-name" data-i18n="hero.name">Junior<br><em>Szoftver&shy;fejlesztő</em></h1>
+    <p class="hero-sub" data-i18n="hero.subtitle">
+      ASP.NET Core, C#, SQL Server. Saját homelab infrastruktúrát üzemeltetek Windows Serveren — IIS, Docker, Tailscale stack. Jelenleg az Óbudai Egyetem NIK karán tanulok.
+    </p>
+    <div class="hero-actions">
+      <a href="https://github.com/itsmebencebudai" target="_blank" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 6.1 18 6.4 18 6.4c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        <span data-i18n="hero.cta.github">GitHub</span>
+      </a>
+      <a href="#contact" class="btn btn-ghost"><span data-i18n="hero.cta.contact">Kapcsolat</span></a>
+      <a href="Budai_Bence_CV_HU.docx" id="cv-download-link" class="btn btn-ghost" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="hero.cta.download">CV letöltés</span>
+      </a>
+    </div>
+    <div class="status-dot" data-i18n="hero.status">Nyitott új lehetőségekre · Részidős / Gyakorlat</div>
   </div>
 </div>
 
-<div class="scroll-hint">
-  <span data-i18n="scrollHint">Scroll to explore</span>
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="M8 3v10M4 9l4 4 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div>
-
-<div class="below">
-  <div class="stats">
-    <div><div class="stat-val" data-i18n="stat1Value">Trusted</div><div class="stat-label" data-i18n="stat1Label">Construction Partner</div></div>
-    <div><div class="stat-val" data-i18n="stat2Value">Experienced</div><div class="stat-label" data-i18n="stat2Label">Project Delivery</div></div>
-    <div><div class="stat-val" data-i18n="stat3Value">Reliable</div><div class="stat-label" data-i18n="stat3Label">Client Service</div></div>
-    <div><div class="stat-val" data-i18n="stat4Value">Dedicated</div><div class="stat-label" data-i18n="stat4Label">Quality Results</div></div>
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="reveal">
+    <p class="section-label" data-i18n="section.projects.label">// projektek</p>
+    <h2 class="section-title" data-i18n="section.projects.title">Amivel most <span>foglalkozom</span></h2>
   </div>
-  <section class="about" id="about">
-    <div class="section-title" data-i18n="aboutTitle">About Alpha Invest Media</div>
-    <div class="section-sub" data-i18n="aboutSubtitle">16 years of trusted construction delivery</div>
-    <div class="about-text">
-      <p data-i18n="aboutP1">Alpha Invest Media Kft. has 16 years of experience delivering reliable, professional construction services. As a general contractor, we cover a wide portfolio across industry and commerce, serving partners who want to grow, renew, and build with confidence.</p>
-      <p data-i18n="aboutP2">Clients value having one trusted company manage every phase of a project. Our full-service approach means design, planning and execution stay aligned under a single team, which speeds delivery and simplifies communication.</p>
-      <p data-i18n="aboutP3">We aim to exceed expectations for every new and existing partner, building long-term trust and strong relationships with every completed project.</p>
-    </div>
-  </section>
-  <section class="services" id="services">
-    <div class="section-title" data-i18n="servicesTitle">What We Build</div>
-    <div class="section-sub" data-i18n="servicesSubtitle">End-to-end construction services</div>
-    <div class="cards">
-      <div class="card"><div class="card-icon">🏗️</div><h3 data-i18n="service1Title">General Contracting</h3><p data-i18n="service1Text">Turnkey construction from earthworks through roof, delivered with strong planning and a single trusted partner.</p></div>
-      <div class="card"><div class="card-icon">⚡</div><h3 data-i18n="service2Title">Technical Systems</h3><p data-i18n="service2Text">Electrical, plumbing, HVAC, IT networks and systems built to code and designed for reliability.</p></div>
-      <div class="card"><div class="card-icon">🏠</div><h3 data-i18n="service3Title">Roof & Structure</h3><p data-i18n="service3Text">Terraces, shelters, fences, roofing and timber carpentry completed with precision and care.</p></div>
-      <div class="card"><div class="card-icon">🧱</div><h3 data-i18n="service4Title">Facade & Insulation</h3><p data-i18n="service4Text">External insulation, waterproofing, masonry, painting and all finish works for lasting value.</p></div>
-      <div class="card"><div class="card-icon">🎨</div><h3 data-i18n="service5Title">Design & Branding</h3><p data-i18n="service5Text">Graphic design, foil wrapping, illuminated signs and all visual branding elements.</p></div>
-      <div class="card"><div class="card-icon">🏊</div><h3 data-i18n="service6Title">Custom Builds</h3><p data-i18n="service6Text">Container houses, saunas, pools, interior design and bespoke decorative solutions.</p></div>
-    </div>
-  </section>
-  <section class="projects" id="projects">
-    <div class="section-title" data-i18n="projectsTitle">References</div>
-    <div class="section-sub" data-i18n="projectsSubtitle">Proven client references from public, commercial and residential work</div>
-    <div class="projects-text" data-i18n="projectsText">Alpha Invest Media has built solutions for leading brands and many local public projects. We also support residential clients with custom homes, holiday houses, and container builds.</div>
-    <ul class="project-list" data-i18n-html="projectsClients"></ul>
-  </section>
-  <section class="contact" id="contact">
-    <div class="section-title" data-i18n="contactTitle">Contact</div>
-    <div class="section-sub" data-i18n="contactSubtitle">Get in touch and let’s build your vision</div>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h3 data-i18n="contactCompany">Alpha Invest Media Kft.</h3>
-        <p><span data-i18n="contactOwner">Owner</span>: Bartus Dániel<br />Phone: +36 30 947 65 84<br />Email: <a href="mailto:alphainvestmediakft@gmail.com">alphainvestmediakft@gmail.com</a><br />Address: 3980 Sátoraljaújhely, Pataki út 14.<br />Tax ID: 29251858-2-05</p>
-      </div>
-      <div class="contact-card">
-        <h3 data-i18n="contactMessageTitle">Send a message</h3>
-        <p data-i18n="contactMessageText">For quotes, project inquiries or partnership requests, contact us directly by email or phone. We will reply quickly and help you turn your idea into a finished building.</p>
-        <a class="btn btn-outline" href="mailto:alphainvestmediakft@gmail.com" data-i18n="contactEmailBtn">Email Us</a>
-      </div>
-    </div>
-  </section>
-  <footer>
-    <div class="footer-logo">Alpha Invest<span>Media</span></div>
-    <p data-i18n="footerCopyright">© 2026 Alpha Invest Media Kft. All rights reserved.</p>
-    <p class="footer-note" data-i18n="footerNote">Built with Pride.</p>
-  </footer>
-</div>
 
-<script src="translations.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="animation.js"></script>
-</body>
-</html>
+  <div class="projects-grid">
+
+    <!-- Homelab alkalmazások -->
+    <div class="project-card reveal">
+      <div class="project-icon">🖥️</div>
+      <div class="project-role" data-i18n="project.homelab.role">Homelab infrastruktúra</div>
+      <div class="project-status status-active" data-i18n="project.homelab.status">● futó rendszer</div>
+      <h3 class="project-name" data-i18n="project.homelab.name">Windows Server Homelab</h3>
+      <p class="project-desc" data-i18n="project.homelab.desc">
+        Saját homelab környezet reverse proxy, DNS és VPN szolgáltatásokkal. A szerveren több VM fut, köztük Pi-hole és Nextcloud, és a rendszer saját monitoringgal rendelkezik.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.windows-server-2022">Windows Server 2022</span>
+        <span class="tag" data-i18n="tag.item.iis">IIS</span>
+        <span class="tag" data-i18n="tag.item.docker">Docker</span>
+        <span class="tag" data-i18n="tag.item.tailscale">Tailscale</span>
+        <span class="tag" data-i18n="tag.item.pihole">Pi-hole</span>
+      </div>
+    </div>
+
+    <!-- MailHub -->
+    <div class="project-card reveal">
+      <div class="project-icon">📬</div>
+      <div class="project-role" data-i18n="project.mailhub.role">Homelab app</div>
+      <div class="project-status status-wip" data-i18n="project.mailhub.status">◐ tervezés / fejlesztés</div>
+      <h3 class="project-name" data-i18n="project.mailhub.name">MailHub</h3>
+      <p class="project-desc" data-i18n="project.mailhub.desc">
+        Belső levelezési és értesítési hub a homelab alkalmazások számára. Központi kommunikációs csatorna, amely rendszerszintű üzeneteket és értesítéseket továbbít.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.razor">Razor Pages</span>
+        <span class="tag" data-i18n="tag.item.sqlserver">SQL Server</span>
+        <span class="tag" data-i18n="tag.item.efcore">EF Core</span>
+      </div>
+    </div>
+
+    <!-- HomeGit -->
+    <div class="project-card reveal">
+      <div class="project-icon">🐙</div>
+      <div class="project-role" data-i18n="project.homegit.role">GitHub-style repository manager</div>
+      <div class="project-status status-active" data-i18n="project.homegit.status">● futó rendszer</div>
+      <h3 class="project-name" data-i18n="project.homegit.name">HomeGit</h3>
+      <p class="project-desc" data-i18n="project.homegit.desc">
+        Git repository menedzsment rendszer helyi repók kezeléséhez. Branch-, commit-, státusz- és klónozás-műveletek támogatása központi webes felületről.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.razor">Razor Pages</span>
+        <span class="tag" data-i18n="tag.item.libgit2sharp">LibGit2Sharp</span>
+      </div>
+    </div>
+
+    <!-- HomeVault -->
+    <div class="project-card reveal">
+      <div class="project-icon">🏠</div>
+      <div class="project-role" data-i18n="project.homevault.role">Titkosított homelab vault</div>
+      <div class="project-status status-active" data-i18n="project.homevault.status">● futó fejlesztés</div>
+      <h3 class="project-name" data-i18n="project.homevault.name">HomeVault</h3>
+      <p class="project-desc" data-i18n="project.homevault.desc">
+        Homelab titkosított kulcs- és jelszókezelő: biztonságos API titoklekérési folyamattal és admin felülettel. A rendszer környezeti konfigurációval működik és központi adatmodelleket használ.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.efcore">EF Core</span>
+        <span class="tag" data-i18n="tag.item.razor">Razor Pages</span>
+        <span class="tag" data-i18n="tag.item.serilog">Serilog</span>
+        <span class="tag" data-i18n="tag.item.encryption">Titkosítás</span>
+      </div>
+    </div>
+
+    <!-- ShellRunner -->
+    <div class="project-card reveal">
+      <div class="project-icon">⚡</div>
+      <div class="project-role" data-i18n="project.shellrunner.role">Homelab admin tool</div>
+      <div class="project-status status-wip" data-i18n="project.shellrunner.status">◐ tervezés / fejlesztés</div>
+      <h3 class="project-name" data-i18n="project.shellrunner.name">ShellRunner</h3>
+      <p class="project-desc" data-i18n="project.shellrunner.desc">
+        Távoli parancssor-végrehajtást biztosító eszköz, amely hitelesített API végpontokon keresztül futtat szerveroldali szkripteket és naplózza a kimenetet.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.powershell">PowerShell</span>
+        <span class="tag" data-i18n="tag.item.serilog">Serilog</span>
+        <span class="tag" data-i18n="tag.item.iis">IIS</span>
+      </div>
+    </div>
+
+    <!-- WakePortal -->
+    <div class="project-card reveal">
+      <div class="project-icon">🌙</div>
+      <div class="project-role" data-i18n="project.wakeportal.role">Wake-on-LAN menedzsment</div>
+      <div class="project-status status-wip" data-i18n="project.wakeportal.status">◐ tervezés / fejlesztés</div>
+      <h3 class="project-name" data-i18n="project.wakeportal.name">WakePortal</h3>
+      <p class="project-desc" data-i18n="project.wakeportal.desc">
+        Homelab Wake-on-LAN menedzsment kettős megoldása: külön API az ébresztésekhez és admin felület az ébresztési műveletek kezeléséhez. Központi szolgáltatás-komponensekkel működik.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.razor">Razor Pages</span>
+        <span class="tag" data-i18n="tag.item.efcore">EF Core</span>
+        <span class="tag" data-i18n="tag.item.wol">WOL</span>
+        <span class="tag" data-i18n="tag.item.serilog">Serilog</span>
+      </div>
+    </div>
+
+    <!-- RoomBooking -->
+    <div class="project-card reveal">
+      <div class="project-icon">📅</div>
+      <div class="project-role" data-i18n="project.roombooking.role">Room booking platform</div>
+      <div class="project-status status-active" data-i18n="project.roombooking.status">● futó rendszer</div>
+      <h3 class="project-name" data-i18n="project.roombooking.name">RoomBooking</h3>
+      <p class="project-desc" data-i18n="project.roombooking.desc">
+        Teremfoglaló rendszer API-val, webes admin UI-val és Android klienssel. Közös modellezés és valós idejű foglalás-kezelés biztosítja a megbízható adminisztrációt.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.aspnet">ASP.NET Core</span>
+        <span class="tag" data-i18n="tag.item.razor">Razor Pages</span>
+        <span class="tag" data-i18n="tag.item.android">Android</span>
+        <span class="tag" data-i18n="tag.item.efcore">EF Core</span>
+        <span class="tag" data-i18n="tag.item.webapi">Web API</span>
+      </div>
+    </div>
+
+    <!-- Ollama Agent -->
+    <div class="project-card reveal">
+      <div class="project-icon">🤖</div>
+      <div class="project-role" data-i18n="project.ollama.role">AI · Kódolási agent</div>
+      <div class="project-status status-wip" data-i18n="project.ollama.status">◐ kísérlet</div>
+      <h3 class="project-name" data-i18n="project.ollama.name">Ollama Coding Agent</h3>
+      <p class="project-desc" data-i18n="project.ollama.desc">
+        Helyi kódolási asszisztens nagy nyelvi modellel, amely fájlkezelést és parancssori interakciót biztosít egy webes és szolgáltatás-alapú környezetben.
+      </p>
+      <div class="tag-row">
+        <span class="tag" data-i18n="tag.item.csharp">C#</span>
+        <span class="tag" data-i18n="tag.item.ollama">Ollama</span>
+        <span class="tag" data-i18n="tag.item.dockerswarm">Docker Swarm</span>
+        <span class="tag" data-i18n="tag.item.llm">LLM</span>
+        <span class="tag" data-i18n="tag.item.react">ReAct</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); max-width: 100%; padding: 96px 48px;">
+  <div style="max-width: 1080px; margin: 0 auto;">
+    <div class="reveal">
+      <p class="section-label" data-i18n="section.skills.label">// képességek</p>
+      <h2 class="section-title" data-i18n="section.skills.title">Stack &amp; <span>eszközök</span></h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.csharp">C#</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.aspnet">ASP.NET Core</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.sqlserver">SQL Server</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.efcore">EF Core</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.iis">IIS</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span data-i18n="skill.item.windows">Windows Server</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.docker">Docker</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.dockerswarm">Docker Swarm</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.tailscale">Tailscale</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.git">Git</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.razor">Razor Pages</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.webapi">Web API</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.powershell">PowerShell</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.android">Android</span></div>
+      <div class="skill-item"><div class="skill-dot secondary"></div><span data-i18n="skill.item.serilog">Serilog</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.libgit2sharp">LibGit2Sharp</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.wol">WOL</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.pihole">Pi-hole</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.ollama">Ollama</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.llm">LLM</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.react">ReAct</span></div>
+      <div class="skill-item"><div class="skill-dot basic"></div><span data-i18n="skill.item.encryption">Titkosítás</span></div>
+    </div>
+    <div class="reveal" style="margin-top: 20px; display: flex; gap: 24px; flex-wrap: wrap;">
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 7px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;"></span> <span data-i18n="skills.level.confident">magabiztos</span></span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 7px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent2);display:inline-block;"></span> <span data-i18n="skills.level.regular">rendszeres használat</span></span>
+      <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 7px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;"></span> <span data-i18n="skills.level.basic">alapszint</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE / EDU ═══ -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label" data-i18n="section.experience.label">// tapasztalat & oktatás</p>
+    <h2 class="section-title" data-i18n="section.experience.title">Háttér &amp; <span>karrierút</span></h2>
+  </div>
+  <div class="timeline-grid reveal">
+    <div class="timeline-column">
+      <p class="section-subtitle" data-i18n="section.experience.work">Tapasztalat</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 – 2026</div>
+          <div class="tl-title" data-i18n="section.experience.job1.title">Informatika Gyakornok</div>
+          <div class="tl-org" data-i18n="section.experience.job1.org">HUN-REN Magyar Kutatási Hálózat</div>
+          <div class="tl-body" data-i18n="section.experience.job1.body">ASP.NET Core web és API fejlesztés, SQL Server adatbázis-kezelés, IIS üzemeltetés, webalkalmazások karbantartása, helpdesk támogatás.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-column">
+      <p class="section-subtitle" data-i18n="section.experience.education">Tanulmányok</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2024 –</div>
+          <div class="tl-title" data-i18n="section.experience.edu1.title">Üzemmérnök-informatikus (BProf)</div>
+          <div class="tl-org" data-i18n="section.experience.edu1.org">Óbudai Egyetem – Neumann János Informatika Kar (NIK)</div>
+          <div class="tl-body" data-i18n="section.experience.edu1.body">Alapképzés, aktív félévek. Operációs rendszerek, adatbázisok, hálózatok, szoftvertechnológia.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2023 – 2024</div>
+          <div class="tl-title" data-i18n="section.experience.edu2.title">Szoftverfejlesztő és -tesztelő végzettség (OKJ)</div>
+          <div class="tl-org" data-i18n="section.experience.edu2.org">BMSZC Bolyai János Technikum és Kollégium</div>
+          <div class="tl-body" data-i18n="section.experience.edu2.body">Szakmai képzés, adatbázistervezés, szoftverfejlesztési alapok, tesztelési metodológiák.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2019 – 2023</div>
+          <div class="tl-title" data-i18n="section.experience.edu3.title">Szakközépiskola – Irodai informatikus</div>
+          <div class="tl-org" data-i18n="section.experience.edu3.org">BMSZC Bolyai János Technikum és Kollégium</div>
+          <div class="tl-body" data-i18n="section.experience.edu3.body">Informatikai alapok, irodai szoftverek, hálózati ismeretek.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label" data-i18n="section.contact.label">// kapcsolat</p>
+    <h2 class="section-title" data-i18n="section.contact.title">Írj <span>bátran</span></h2>
+  </div>
+  <div class="contact-box reveal">
+    <p style="font-size: 14px; color: var(--muted);" data-i18n="section.contact.desc">Nyitott vagyok részidős munkára, szakmai gyakorlatra vagy érdekes projektekre.</p>
+    <a href="mailto:bencebudai2004@gmail.com" class="contact-email" data-i18n="section.contact.email">bencebudai2004@gmail.com</a>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 12px;">
+      <a href="tel:+36300739915" class="btn btn-ghost">+36 30 073 9915</a>
+      <a href="https://github.com/itsmebencebudai" target="_blank" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 6.1 18 6.4 18 6.4c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        <span data-i18n="section.contact.github">GitHub</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer.copy">© 2026 Budai Bence</span>
+  <span data-i18n="footer.location">Budapest, HU · bb.dev</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+<script>
+  const translations = {
+    en: {
+      'nav.logo': 'Bence Budai',
+      'nav.projectFolder': 'Client access',
+      'nav.projects': 'Projects',
+      'nav.skills': 'Skills',
+      'nav.experience': 'Experience',
+      'nav.contact': 'Contact',
+      'hero.eyebrow': 'Bence Budai · Budapest, HU',
+      'hero.name': 'Junior<br><em>Software Developer</em>',
+      'hero.subtitle': 'Experienced with homelab infrastructure and modern web development. I run virtual environments and services on Windows Server, and I am currently studying at Óbuda University.',
+      'hero.cta.github': 'GitHub',
+      'hero.cta.contact': 'Contact',
+      'page.title': 'Bence Budai – Junior Software Developer',
+      'hero.cta.download': 'Download CV',
+      'hero.status': 'Open to new opportunities · Part-time / Internship',
+      'section.projects.label': '// projects',
+      'section.projects.title': 'What I am currently <span>working on</span>',
+      'section.skills.label': '// skills',
+      'section.skills.title': 'Stack & <span>tools</span>',
+      'section.experience.label': '// experience & education',
+      'section.experience.title': 'Background & <span>career</span>',
+      'section.experience.work': 'Work experience',
+      'section.experience.education': 'Education',
+      'section.contact.label': '// contact',
+      'section.contact.title': 'Get in <span>touch</span>',
+      'section.contact.desc': 'Open to part-time work, internships, or interesting projects.',
+      'section.contact.email': 'bencebudai2004@gmail.com',
+      'section.contact.github': 'GitHub',
+      'footer.copy': '© 2026 Budai Bence',
+      'footer.location': 'Budapest, HU · bb.dev',
+      'skills.level.confident': 'confident',
+      'skills.level.regular': 'regular use',
+      'skills.level.basic': 'basic level',
+      'skill.item.csharp': 'C#',
+      'skill.item.aspnet': 'ASP.NET Core',
+      'skill.item.sqlserver': 'SQL Server',
+      'skill.item.efcore': 'EF Core',
+      'skill.item.iis': 'IIS',
+      'tag.item.windows-server-2022': 'Windows Server 2022',
+      'tag.item.aspnet': 'ASP.NET Core',
+      'tag.item.razor': 'Razor Pages',
+      'tag.item.sqlserver': 'SQL Server',
+      'tag.item.libgit2sharp': 'LibGit2Sharp',
+      'tag.item.serilog': 'Serilog',
+      'tag.item.powershell': 'PowerShell',
+      'tag.item.wol': 'WOL',
+      'tag.item.android': 'Android',
+      'tag.item.webapi': 'Web API',
+      'tag.item.csharp': 'C#',
+      'tag.item.ollama': 'Ollama',
+      'tag.item.dockerswarm': 'Docker Swarm',
+      'tag.item.llm': 'LLM',
+      'tag.item.react': 'ReAct',
+      'tag.item.encryption': 'Encryption',
+      'skill.item.windows': 'Windows Server',
+      'skill.item.docker': 'Docker',
+      'skill.item.dockerswarm': 'Docker Swarm',
+      'skill.item.tailscale': 'Tailscale',
+      'skill.item.git': 'Git',
+      'skill.item.razor': 'Razor Pages',
+      'skill.item.webapi': 'Web API',
+      'skill.item.powershell': 'PowerShell',
+      'skill.item.android': 'Android',
+      'skill.item.serilog': 'Serilog',
+      'skill.item.libgit2sharp': 'LibGit2Sharp',
+      'skill.item.wol': 'WOL',
+      'skill.item.pihole': 'Pi-hole',
+      'skill.item.ollama': 'Ollama',
+      'skill.item.llm': 'LLM',
+      'skill.item.react': 'ReAct',
+      'skill.item.encryption': 'Encryption',
+      'section.experience.job1.title': 'IT Intern',
+      'section.experience.job1.org': 'HUN-REN Hungarian Research Network',
+      'section.experience.job1.body': 'ASP.NET Core web and API development, SQL Server database administration, IIS operations, web application maintenance, and helpdesk support.',
+      'section.experience.edu1.title': 'Industrial Engineer Informatics (BProf)',
+      'section.experience.edu1.org': 'Óbuda University – John von Neumann Faculty of Informatics (NIK)',
+      'section.experience.edu1.body': 'Undergraduate studies, active semesters. Operating systems, databases, networks, and software engineering.',
+      'section.experience.edu2.title': 'Software Developer and Tester Qualification (OKJ)',
+      'section.experience.edu2.org': 'Bolyai János Technical High School and College',
+      'section.experience.edu2.body': 'Professional training, database design, software development fundamentals, and testing methodologies.',
+      'section.experience.edu3.title': 'Technical High School – Office IT Specialist',
+      'section.experience.edu3.org': 'BMSZC Bolyai János Technical High School and Dormitory',
+      'section.experience.edu3.body': 'IT fundamentals, office software, and networking basics.',
+      'project.homelab.role': 'Homelab infrastructure',
+      'project.homelab.status': '● running system',
+      'project.homelab.name': 'Windows Server Homelab',
+      'project.homelab.desc': 'Own homelab environment with reverse proxy, DNS and VPN services. Multiple VMs run on the server, including Pi-hole and Nextcloud, and the system has its own monitoring.',
+      'project.mailhub.role': 'Homelab app',
+      'project.mailhub.status': '◐ planning / development',
+      'project.mailhub.name': 'MailHub',
+      'project.mailhub.desc': 'Internal mail and notification hub for homelab apps. Central communication channel for system messages and alerts.',
+      'project.homegit.role': 'GitHub-style repository manager',
+      'project.homegit.status': '● running system',
+      'project.homegit.name': 'HomeGit',
+      'project.homegit.desc': 'Git repository management system for local repos with branch, commit, status and clone operations available from a central web interface.',
+      'project.homevault.role': 'Encrypted homelab vault',
+      'project.homevault.status': '● ongoing development',
+      'project.homevault.name': 'HomeVault',
+      'project.homevault.desc': 'Encrypted homelab vault for secrets and keys with secure API retrieval and admin UI. Configured with environment variables and shared data models.',
+      'project.shellrunner.role': 'Homelab admin tool',
+      'project.shellrunner.status': '◐ planning / development',
+      'project.shellrunner.name': 'ShellRunner',
+      'project.shellrunner.desc': 'Remote shell execution tool that runs server-side scripts through authenticated API endpoints and logs the output.',
+      'project.wakeportal.role': 'Wake-on-LAN management',
+      'project.wakeportal.status': '◐ planning / development',
+      'project.wakeportal.name': 'WakePortal',
+      'project.wakeportal.desc': 'Homelab Wake-on-LAN management solution with a separate API for wake commands and an admin interface for wake operations.',
+      'project.roombooking.role': 'Room booking platform',
+      'project.roombooking.status': '● running system',
+      'project.roombooking.name': 'RoomBooking',
+      'project.roombooking.desc': 'Room booking platform with API, web admin UI and Android client. Shared models and real-time booking handling ensure reliable administration.',
+      'project.ollama.role': 'AI coding agent',
+      'project.ollama.status': '◐ experimental',
+      'project.ollama.name': 'Ollama Coding Agent',
+      'project.ollama.desc': 'Local coding assistant based on a large language model, offering file handling and terminal interaction in a service-backed environment.'
+    },
+    hu: {
+      'nav.logo': 'Budai Bence',
+      'nav.projectFolder': 'Ügyfél hozzáférés',
+      'nav.projects': 'Projektek',
+      'nav.skills': 'Készségek',
+      'nav.experience': 'Tapasztalat',
+      'nav.contact': 'Kapcsolat',
+      'hero.eyebrow': 'Budai Bence · Budapest, HU',
+      'hero.name': 'Junior<br><em>Szoftver&shy;fejlesztő</em>',
+      'hero.subtitle': 'ASP.NET Core, C#, SQL Server. Saját homelab infrastruktúrát üzemeltetek Windows Serveren — IIS, Docker, Tailscale stack. Jelenleg az Óbudai Egyetem NIK karán tanulok.',
+      'hero.cta.github': 'GitHub',
+      'hero.cta.contact': 'Kapcsolat',
+      'page.title': 'Budai Bence – Junior Szoftverfejlesztő',
+      'hero.cta.download': 'CV letöltés',
+      'hero.status': 'Nyitott új lehetőségekre · Részidős / Gyakorlat',
+      'section.projects.label': '// projektek',
+      'section.projects.title': 'Amivel most <span>foglalkozom</span>',
+      'section.skills.label': '// képességek',
+      'section.skills.title': 'Stack &amp; <span>eszközök</span>',
+      'section.experience.label': '// tapasztalat & oktatás',
+      'section.experience.title': 'Háttér &amp; <span>karrierút</span>',
+      'section.experience.work': 'Tapasztalat',
+      'section.experience.education': 'Tanulmányok',
+      'section.contact.label': '// kapcsolat',
+      'section.contact.title': 'Írj <span>bátran</span>',
+      'section.contact.desc': 'Nyitott vagyok részidős munkára, szakmai gyakorlatra vagy érdekes projektekre.',
+      'section.contact.email': 'bencebudai2004@gmail.com',
+      'section.contact.github': 'GitHub',
+      'footer.copy': '© 2026 Budai Bence',
+      'footer.location': 'Budapest, HU · bb.dev',
+      'skills.level.confident': 'magabiztos',
+      'skills.level.regular': 'rendszeres használat',
+      'skills.level.basic': 'alapszint',
+      'skill.item.csharp': 'C#',
+      'skill.item.aspnet': 'ASP.NET Core',
+      'skill.item.sqlserver': 'SQL Server',
+      'skill.item.efcore': 'EF Core',
+      'skill.item.iis': 'IIS',
+      'tag.item.windows-server-2022': 'Windows Server 2022',
+      'tag.item.aspnet': 'ASP.NET Core',
+      'tag.item.razor': 'Razor Pages',
+      'tag.item.sqlserver': 'SQL Server',
+      'tag.item.libgit2sharp': 'LibGit2Sharp',
+      'tag.item.serilog': 'Serilog',
+      'tag.item.powershell': 'PowerShell',
+      'tag.item.wol': 'WOL',
+      'tag.item.android': 'Android',
+      'tag.item.webapi': 'Web API',
+      'tag.item.csharp': 'C#',
+      'tag.item.ollama': 'Ollama',
+      'tag.item.dockerswarm': 'Docker Swarm',
+      'tag.item.llm': 'LLM',
+      'tag.item.react': 'ReAct',
+      'tag.item.encryption': 'Titkosítás',
+      'skill.item.windows': 'Windows Server',
+      'skill.item.docker': 'Docker',
+      'skill.item.dockerswarm': 'Docker Swarm',
+      'skill.item.tailscale': 'Tailscale',
+      'skill.item.git': 'Git',
+      'skill.item.razor': 'Razor Pages',
+      'skill.item.webapi': 'Web API',
+      'skill.item.powershell': 'PowerShell',
+      'skill.item.android': 'Android',
+      'skill.item.serilog': 'Serilog',
+      'skill.item.libgit2sharp': 'LibGit2Sharp',
+      'skill.item.wol': 'WOL',
+      'skill.item.pihole': 'Pi-hole',
+      'skill.item.ollama': 'Ollama',
+      'skill.item.llm': 'LLM',
+      'skill.item.react': 'ReAct',
+      'skill.item.encryption': 'Titkosítás',
+      'section.experience.job1.title': 'Informatika Gyakornok',
+      'section.experience.job1.org': 'HUN-REN Magyar Kutatási Hálózat',
+      'section.experience.job1.body': 'ASP.NET Core web és API fejlesztés, SQL Server adatbázis-kezelés, IIS üzemeltetés, webalkalmazások karbantartása, helpdesk támogatás.',
+      'section.experience.edu1.title': 'Üzemmérnök-informatikus (BProf)',
+      'section.experience.edu1.org': 'Óbudai Egyetem – Neumann János Informatika Kar (NIK)',
+      'section.experience.edu1.body': 'Alapképzés, aktív félévek. Operációs rendszerek, adatbázisok, hálózatok, szoftvertechnológia.',
+      'section.experience.edu2.title': 'Szoftverfejlesztő és -tesztelő végzettség (OKJ)',
+      'section.experience.edu2.org': 'BMSZC Bolyai János Technikum és Kollégium',
+      'section.experience.edu2.body': 'Szakmai képzés, adatbázistervezés, szoftverfejlesztési alapok, tesztelési metodológiák.',
+      'section.experience.edu3.title': 'Szakközépiskola – Irodai informatikus',
+      'section.experience.edu3.org': 'BMSZC Bolyai János Technikum és Kollégium',
+      'section.experience.edu3.body': 'Informatikai alapok, irodai szoftverek, hálózati ismeretek.',
+      'project.homelab.role': 'Homelab infrastruktúra',
+      'project.homelab.status': '● futó rendszer',
+      'project.homelab.name': 'Windows Server Homelab',
+      'project.homelab.desc': 'Saját homelab környezet reverse proxy, DNS és VPN szolgáltatásokkal. A szerveren több VM fut, köztük Pi-hole és Nextcloud, és a rendszer saját monitoringgal rendelkezik.',
+      'project.mailhub.role': 'Homelab app',
+      'project.mailhub.status': '◐ tervezés / fejlesztés',
+      'project.mailhub.name': 'MailHub',
+      'project.mailhub.desc': 'Belső levelezési és értesítési hub a homelab alkalmazások számára. Központi kommunikációs csatorna, amely rendszerszintű üzeneteket és értesítéseket továbbít.',
+      'project.homegit.role': 'GitHub-stílusú repókezelő',
+      'project.homegit.status': '● futó rendszer',
+      'project.homegit.name': 'HomeGit',
+      'project.homegit.desc': 'Git repository menedzsment rendszer helyi repók kezeléséhez. Branch-, commit-, státusz- és klónozás-műveletek támogatása központi webes felületről.',
+      'project.homevault.role': 'Titkosított homelab vault',
+      'project.homevault.status': '● futó fejlesztés',
+      'project.homevault.name': 'HomeVault',
+      'project.homevault.desc': 'Homelab titkosított kulcs- és jelszókezelő: biztonságos API titoklekérési folyamattal és admin felülettel. A rendszer környezeti konfigurációval működik és központi adatmodelleket használ.',
+      'project.shellrunner.role': 'Homelab admin tool',
+      'project.shellrunner.status': '◐ tervezés / fejlesztés',
+      'project.shellrunner.name': 'ShellRunner',
+      'project.shellrunner.desc': 'Távoli parancssor-végrehajtást biztosító eszköz, amely hitelesített API végpontokon keresztül futtat szerveroldali szkripteket és naplózza a kimenetet.',
+      'project.wakeportal.role': 'Wake-on-LAN menedzsment',
+      'project.wakeportal.status': '◐ tervezés / fejlesztés',
+      'project.wakeportal.name': 'WakePortal',
+      'project.wakeportal.desc': 'Homelab Wake-on-LAN menedzsment kettős megoldása: külön API az ébresztésekhez és admin felület az ébresztési műveletek kezeléséhez. Központi szolgáltatás-komponensekkel működik.',
+      'project.roombooking.role': 'Teremfoglaló platform',
+      'project.roombooking.status': '● futó rendszer',
+      'project.roombooking.name': 'RoomBooking',
+      'project.roombooking.desc': 'Teremfoglaló rendszer API-val, webes admin UI-val és Android klienssel. Közös modellezés és valós idejű foglalás-kezelés biztosítja a megbízható adminisztrációt.',
+      'project.ollama.role': 'AI · Kódolási agent',
+      'project.ollama.status': '◐ kísérlet',
+      'project.ollama.name': 'Ollama Coding Agent',
+      'project.ollama.desc': 'Helyi kódolási asszisztens nagy nyelvi modellel, amely fájlkezelést és parancssori interakciót biztosít egy webes és szolgáltatás-alapú környezetben.'
+    }
+  };
+
+  const setLanguage = lang => {
+    localStorage.setItem('preferredLang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (!key || !translations[lang] || translations[lang][key] === undefined) return;
+      el.innerHTML = translations[lang][key];
+    });
+    if (document.documentElement) {
+      document.documentElement.lang = lang;
+    }
+    if (translations[lang] && translations[lang]['page.title']) {
+      document.title = translations[lang]['page.title'];
+    }
+    const cvLink = document.getElementById('cv-download-link');
+    if (cvLink) {
+      cvLink.href = lang === 'en' ? 'Budai_Bence_CV_EN.docx' : 'Budai_Bence_CV_HU.docx';
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  };
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
+  const savedLang = localStorage.getItem('preferredLang') || 'hu';
+  setLanguage(savedLang);
+</script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const pageNav = document.querySelector('nav');
+
+    const closeNav = () => {
+      if (!pageNav || !navLinks) return;
+      pageNav.classList.remove('open');
+      navLinks.classList.remove('open');
+    };
+
+    if (navToggle && navLinks && pageNav) {
+      navToggle.addEventListener('click', () => {
+        pageNav.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', closeNav);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1000) closeNav();
+      });
+    }
+  </script>

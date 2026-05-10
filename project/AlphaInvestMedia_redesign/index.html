@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alpha Invest Media Kft. — Building Dreams in 3D</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<script src="../access-config.js"></script>
+<script>
+  const storedHash = localStorage.getItem('projectAccessHash');
+  if (!storedHash || !window.PROJECT_ACCESS || !window.PROJECT_ACCESS[storedHash]) {
+    window.location.href = '../index.html';
+  }
+</script>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <div class="logo">
+    <img src="logo.png" alt="Alpha Invest Media logo" />
+    <div class="logo-text">Alpha Invest<span>Media</span></div>
+  </div>
+  <ul>
+    <li><a href="#services" data-i18n="navServices">Services</a></li>
+    <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+    <li><a href="#about" data-i18n="navAbout">About</a></li>
+    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn active" data-lang="hu">HU</button>
+  </div>
+</nav>
+
+<div id="progress-wrap">
+  <div id="progress-label">Building your future…</div>
+  <div id="progress-bar-bg"><div id="progress-bar"></div></div>
+</div>
+
+<div class="hero">
+  <h1><span data-i18n="heroTitle">We Build</span><br/><span data-i18n="heroTitleHighlight">Your Vision</span></h1>
+  <p data-i18n="heroSubtitle">Premium Construction &amp; Development</p>
+  <div class="hero-btns">
+    <a href="#services" class="btn btn-primary" data-i18n="heroQuoteBtn">Get a Quote</a>
+    <a href="#services" class="btn btn-outline" data-i18n="heroProjectsBtn">Our Projects</a>
+  </div>
+</div>
+
+<div class="scroll-hint">
+  <span data-i18n="scrollHint">Scroll to explore</span>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M8 3v10M4 9l4 4 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<div class="below">
+  <div class="stats">
+    <div><div class="stat-val" data-i18n="stat1Value">Trusted</div><div class="stat-label" data-i18n="stat1Label">Construction Partner</div></div>
+    <div><div class="stat-val" data-i18n="stat2Value">Experienced</div><div class="stat-label" data-i18n="stat2Label">Project Delivery</div></div>
+    <div><div class="stat-val" data-i18n="stat3Value">Reliable</div><div class="stat-label" data-i18n="stat3Label">Client Service</div></div>
+    <div><div class="stat-val" data-i18n="stat4Value">Dedicated</div><div class="stat-label" data-i18n="stat4Label">Quality Results</div></div>
+  </div>
+  <section class="about" id="about">
+    <div class="section-title" data-i18n="aboutTitle">About Alpha Invest Media</div>
+    <div class="section-sub" data-i18n="aboutSubtitle">16 years of trusted construction delivery</div>
+    <div class="about-text">
+      <p data-i18n="aboutP1">Alpha Invest Media Kft. has 16 years of experience delivering reliable, professional construction services. As a general contractor, we cover a wide portfolio across industry and commerce, serving partners who want to grow, renew, and build with confidence.</p>
+      <p data-i18n="aboutP2">Clients value having one trusted company manage every phase of a project. Our full-service approach means design, planning and execution stay aligned under a single team, which speeds delivery and simplifies communication.</p>
+      <p data-i18n="aboutP3">We aim to exceed expectations for every new and existing partner, building long-term trust and strong relationships with every completed project.</p>
+    </div>
+  </section>
+  <section class="services" id="services">
+    <div class="section-title" data-i18n="servicesTitle">What We Build</div>
+    <div class="section-sub" data-i18n="servicesSubtitle">End-to-end construction services</div>
+    <div class="cards">
+      <div class="card"><div class="card-icon">🏗️</div><h3 data-i18n="service1Title">General Contracting</h3><p data-i18n="service1Text">Turnkey construction from earthworks through roof, delivered with strong planning and a single trusted partner.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3 data-i18n="service2Title">Technical Systems</h3><p data-i18n="service2Text">Electrical, plumbing, HVAC, IT networks and systems built to code and designed for reliability.</p></div>
+      <div class="card"><div class="card-icon">🏠</div><h3 data-i18n="service3Title">Roof & Structure</h3><p data-i18n="service3Text">Terraces, shelters, fences, roofing and timber carpentry completed with precision and care.</p></div>
+      <div class="card"><div class="card-icon">🧱</div><h3 data-i18n="service4Title">Facade & Insulation</h3><p data-i18n="service4Text">External insulation, waterproofing, masonry, painting and all finish works for lasting value.</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h3 data-i18n="service5Title">Design & Branding</h3><p data-i18n="service5Text">Graphic design, foil wrapping, illuminated signs and all visual branding elements.</p></div>
+      <div class="card"><div class="card-icon">🏊</div><h3 data-i18n="service6Title">Custom Builds</h3><p data-i18n="service6Text">Container houses, saunas, pools, interior design and bespoke decorative solutions.</p></div>
+    </div>
+  </section>
+  <section class="projects" id="projects">
+    <div class="section-title" data-i18n="projectsTitle">References</div>
+    <div class="section-sub" data-i18n="projectsSubtitle">Proven client references from public, commercial and residential work</div>
+    <div class="projects-text" data-i18n="projectsText">Alpha Invest Media has built solutions for leading brands and many local public projects. We also support residential clients with custom homes, holiday houses, and container builds.</div>
+    <ul class="project-list" data-i18n-html="projectsClients"></ul>
+  </section>
+  <section class="contact" id="contact">
+    <div class="section-title" data-i18n="contactTitle">Contact</div>
+    <div class="section-sub" data-i18n="contactSubtitle">Get in touch and let’s build your vision</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3 data-i18n="contactCompany">Alpha Invest Media Kft.</h3>
+        <p><span data-i18n="contactOwner">Owner</span>: Bartus Dániel<br />Phone: +36 30 947 65 84<br />Email: <a href="mailto:alphainvestmediakft@gmail.com">alphainvestmediakft@gmail.com</a><br />Address: 3980 Sátoraljaújhely, Pataki út 14.<br />Tax ID: 29251858-2-05</p>
+      </div>
+      <div class="contact-card">
+        <h3 data-i18n="contactMessageTitle">Send a message</h3>
+        <p data-i18n="contactMessageText">For quotes, project inquiries or partnership requests, contact us directly by email or phone. We will reply quickly and help you turn your idea into a finished building.</p>
+        <a class="btn btn-outline" href="mailto:alphainvestmediakft@gmail.com" data-i18n="contactEmailBtn">Email Us</a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Alpha Invest<span>Media</span></div>
+    <p data-i18n="footerCopyright">© 2026 Alpha Invest Media Kft. All rights reserved.</p>
+    <p class="footer-note" data-i18n="footerNote">Built with Pride.</p>
+  </footer>
+</div>
+
+<script src="translations.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="animation.js"></script>
+</body>
+</html>
