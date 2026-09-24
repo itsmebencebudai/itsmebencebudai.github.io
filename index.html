@@ -898,6 +898,10 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.22c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.3-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.94 10.94 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.15v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
               GitHub
             </a>
+            <a class="btn" id="cv-download" href="Budai_Bence_CV_HU.pdf" download>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              <span data-i18n="hero.cv">CV letöltés</span>
+            </a>
             <a class="btn" id="hero-linkedin" href="#" target="_blank" rel="noopener noreferrer" hidden>LinkedIn</a>
           </div>
 
@@ -1130,6 +1134,7 @@
         "hero.title": "Megbízható szoftvert építek <span class=\"gradient-text\">valódi workflow-kra.</span>",
         "hero.copy": ".NET backendek, API-k, automatizálás, infrastruktúra és fejlesztői eszközök. Azokat a rendszereket szeretem, ahol a kód nem csak jól néz ki, hanem napi problémákat old meg.",
         "hero.work": "Kiemelt projektek",
+        "hero.cv": "CV letöltés",
         "hero.focus": "Fókusz: backend · automation · tooling",
         "hero.location": "Budapest, Hungary",
         "profile.role": "Software Developer · IT",
@@ -1190,6 +1195,7 @@
         "hero.title": "I build reliable software for <span class=\"gradient-text\">real workflows.</span>",
         "hero.copy": ".NET backends, APIs, automation, infrastructure and developer tooling. I enjoy systems where code does more than look good — it removes real friction from everyday work.",
         "hero.work": "Selected work",
+        "hero.cv": "Download CV",
         "hero.focus": "Focus: backend · automation · tooling",
         "hero.location": "Budapest, Hungary",
         "profile.role": "Software Developer · IT",
@@ -1257,6 +1263,10 @@
         btn.classList.toggle("active", btn.getAttribute("data-lang") === active);
       });
       document.title = active === "en" ? "Budai Bence — Software Developer" : "Budai Bence — Szoftverfejlesztő";
+      var cvDownload = document.getElementById("cv-download");
+      if (cvDownload) {
+        cvDownload.href = active === "en" ? "Budai_Bence_CV_EN.pdf" : "Budai_Bence_CV_HU.pdf";
+      }
     }
 
     function configureSocials() {
