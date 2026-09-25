@@ -2015,14 +2015,14 @@
             <div class="focus-pills"><span>Local AI</span><span>MCP</span><span>.NET</span><span>PowerShell</span><span>Homelab</span><span>DX</span></div>
           </article>
           <aside class="presence-card reveal">
-            <div class="now-kicker">BENCE.DEV</div>
-            <h3 data-i18n="status.title">System status</h3>
+            <div class="now-kicker">BENCE.DEV · <span id="live-data-state">LIVE DATA</span></div>
+            <h3 data-i18n="status.title">Live public status</h3>
             <div class="presence-lines">
               <div><span>location</span><span>Budapest</span></div>
               <div><span>focus</span><span>backend / systems</span></div>
-              <div><span>platform</span><span>Windows + Linux</span></div>
-              <div><span>editor</span><span>VS Code / Visual Studio</span></div>
-              <div><span>status</span><span data-i18n="status.building">building</span></div>
+              <div><span>latest</span><span id="now-live-action">syncing…</span></div>
+              <div><span>repo</span><span id="now-live-repo">GitHub</span></div>
+              <div><span>updated</span><span id="now-live-time">now</span></div>
             </div>
           </aside>
         </div>
@@ -2427,8 +2427,8 @@
         "now.active": "Éppen építem & tanulom",
         "now.cardTitle": "Fejlesztői tooling valódi rendszerek körül.",
         "now.copy": "Helyi AI, biztonságosabb MCP integrációk, backend workflow-k, PowerShell automatizálás és homelab infrastruktúra adja a legtöbb jelenlegi kísérletezést.",
-        "status.title": "Rendszerállapot",
-        "status.building": "építés alatt",
+        "status.title": "Élő publikus állapot",
+        "status.building": "élő",
         "arch.label": "Ahogy a rendszerekről gondolkodom",
         "arch.title": "Az alkalmazás csak egy része a rendszernek.",
         "arch.lead": "Általában a kliens kérésétől az alkalmazáslogikán és adaton át az identity, deployment és üzemeltetés teljes útját nézem.",
@@ -2675,7 +2675,8 @@
     });
 
     const githubCacheKey = "portfolioGithubPulse:v1";
-    const githubCacheMs = 30 * 60 * 1000;
+    const githubCacheMs = 5 * 60 * 1000;
+    const githubRefreshMs = 5 * 60 * 1000;
 
     function eventText(event, lang) {
       const labels = activityLabels[lang];
@@ -2713,6 +2714,15 @@
       if (reposEl) reposEl.textContent = data.user && Number.isFinite(data.user.public_repos) ? data.user.public_repos : "—";
       if (starsEl) starsEl.textContent = data.clast && Number.isFinite(data.clast.stargazers_count) ? data.clast.stargazers_count : "—";
       if (refreshedEl) refreshedEl.textContent = relativeTime(data.fetchedAt, lang);
+
+      const nowAction = document.getElementById("now-live-action");
+      const nowRepo = document.getElementById("now-live-repo");
+      const nowTime = document.getElementById("now-live-time");
+      const liveState = document.getElementById("live-data-state");
+      if (nowAction) nowAction.textContent = latest ? eventText(latest, lang) : activityLabels[lang].unavailable;
+      if (nowRepo) nowRepo.textContent = latest && latest.repo ? latest.repo.name.replace("itsmebencebudai/", "") : "GitHub";
+      if (nowTime) nowTime.textContent = latest ? relativeTime(latest.created_at, lang) : relativeTime(data.fetchedAt, lang);
+      if (liveState) liveState.textContent = navigator.onLine ? "LIVE DATA" : "CACHED";
     }
 
     async function loadGithubPulse(force) {
@@ -2836,6 +2846,40 @@
     }
 
     loadGithubPulse(false);
+
+    let githubLiveTimer = setInterval(function() {
+      if (!document.hidden && navigator.onLine) loadGithubPulse(true);
+    }, githubRefreshMs);
+
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden) return;
+      try {
+        const cached = JSON.parse(localStorage.getItem(githubCacheKey) || "null");
+        const stale = !cached || Date.now() - new Date(cached.fetchedAt).getTime() >= githubCacheMs;
+        if (stale && navigator.onLine) loadGithubPulse(true);
+        else if (cached) renderGithubPulse(cached);
+      } catch (_) {
+        if (navigator.onLine) loadGithubPulse(true);
+      }
+    });
+
+    window.addEventListener("online", function() {
+      const liveState = document.getElementById("live-data-state");
+      if (liveState) liveState.textContent = "LIVE DATA";
+      loadGithubPulse(true);
+    });
+
+    window.addEventListener("offline", function() {
+      const liveState = document.getElementById("live-data-state");
+      if (liveState) liveState.textContent = "CACHED";
+    });
+
+    setInterval(function() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(githubCacheKey) || "null");
+        if (cached) renderGithubPulse(cached);
+      } catch (_) {}
+    }, 30 * 1000);
 
 
     const savedTheme = localStorage.getItem("preferredTheme") || "auto";
