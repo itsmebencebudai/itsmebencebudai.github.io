@@ -12,6 +12,8 @@
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/145671524?v=4">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://itsmebencebudai.github.io/">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/assets/app-icon.svg" type="image/svg+xml">
   <title>Budai Bence — Software Developer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1205,6 +1207,610 @@
       }
     }
 
+
+    /* FULL EXPERIENCE LAYER */
+
+    @view-transition { navigation: auto; }
+
+    .now-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 14px;
+    }
+
+    .now-card,
+    .presence-card,
+    .activity-strip,
+    .architecture-panel,
+    .timeline {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .now-card,
+    .presence-card {
+      padding: 24px;
+      min-height: 210px;
+    }
+
+    .now-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font: 600 10px/1 JetBrains Mono, monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .now-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 5px var(--green-soft);
+      animation: nowPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes nowPulse {
+      0%,100% { box-shadow: 0 0 0 4px var(--green-soft); }
+      50% { box-shadow: 0 0 0 9px transparent; }
+    }
+
+    .now-card h3,
+    .presence-card h3 {
+      margin: 24px 0 10px;
+      font: 800 24px/1.2 Manrope, sans-serif;
+      letter-spacing: -.03em;
+    }
+
+    .now-card p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .focus-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    .focus-pills span {
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      color: var(--text-soft);
+      font: 600 10px/1 JetBrains Mono, monospace;
+    }
+
+    .presence-lines {
+      display: grid;
+      gap: 9px;
+      margin-top: 20px;
+      font: 500 11px/1.5 JetBrains Mono, monospace;
+    }
+
+    .presence-lines div {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 12px;
+    }
+
+    .presence-lines span:first-child {
+      color: var(--text-muted);
+    }
+
+    .presence-lines span:last-child {
+      color: var(--text);
+    }
+
+    .tech-marquee {
+      overflow: hidden;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    }
+
+    .tech-marquee-track {
+      width: max-content;
+      display: flex;
+      gap: 8px;
+      padding: 12px 0;
+      animation: marqueeMove 32s linear infinite;
+    }
+
+    .tech-marquee:hover .tech-marquee-track {
+      animation-play-state: paused;
+    }
+
+    .tech-marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid var(--border-muted);
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      color: var(--text-soft);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tech-marquee-item b {
+      color: var(--accent);
+      font-family: JetBrains Mono, monospace;
+      font-size: 10px;
+    }
+
+    @keyframes marqueeMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 4px)); }
+    }
+
+    .architecture-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .arch-node {
+      position: relative;
+      min-height: 92px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-subtle);
+      font: 700 11px/1.45 JetBrains Mono, monospace;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .arch-node:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .arch-node:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 15px;
+      animation: dataArrow 1.6s ease-in-out infinite;
+    }
+
+    .arch-node:nth-child(2)::after { animation-delay: .25s; }
+    .arch-node:nth-child(3)::after { animation-delay: .5s; }
+    .arch-node:nth-child(4)::after { animation-delay: .75s; }
+
+    @keyframes dataArrow {
+      0%,100% { opacity: .35; transform: translate(-2px,-50%); }
+      50% { opacity: 1; transform: translate(2px,-50%); }
+    }
+
+    .architecture-sidecar {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .architecture-sidecar span {
+      padding: 8px;
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font: 600 9px/1.3 JetBrains Mono, monospace;
+    }
+
+    .project-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: -10px 0 24px;
+    }
+
+    .project-filter button {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--surface);
+      color: var(--text-soft);
+      font: 600 10px/1 JetBrains Mono, monospace;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .project-filter button:hover,
+    .project-filter button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .project-card.filtered-out {
+      display: none;
+    }
+
+    .project-preview {
+      position: relative;
+      overflow: hidden;
+      margin: 18px 0 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-subtle);
+      min-height: 88px;
+    }
+
+    .project-preview.terminal {
+      padding: 13px 14px;
+      font: 500 10px/1.6 JetBrains Mono, monospace;
+      color: var(--text-soft);
+    }
+
+    .project-preview.terminal .prompt { color: var(--accent); }
+    .project-preview.terminal .ok { color: var(--green); }
+
+    .project-preview.flow-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px;
+      color: var(--text-muted);
+      font: 600 9px/1 JetBrains Mono, monospace;
+    }
+
+    .project-preview.flow-preview span {
+      padding: 7px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+    }
+
+    .project-preview.flow-preview i {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .impact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .impact-row span {
+      color: var(--text-muted);
+      font: 600 9px/1 JetBrains Mono, monospace;
+    }
+
+    .project-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 15px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    #project-clast { view-transition-name: project-clast; }
+    #project-systems { view-transition-name: project-systems; }
+    #project-homelab { view-transition-name: project-homelab; }
+
+    .activity-strip {
+      display: grid;
+      grid-template-columns: 1.8fr repeat(3, 1fr);
+      overflow: hidden;
+    }
+
+    .activity-cell {
+      min-height: 112px;
+      padding: 20px;
+      border-left: 1px solid var(--border-muted);
+    }
+
+    .activity-cell:first-child {
+      border-left: 0;
+    }
+
+    .activity-label {
+      color: var(--text-muted);
+      font: 600 9px/1 JetBrains Mono, monospace;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .activity-value {
+      margin-top: 12px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .activity-value.big {
+      font: 800 25px/1 Manrope, sans-serif;
+    }
+
+    .activity-sub {
+      margin-top: 5px;
+      color: var(--text-muted);
+      font-size: 10px;
+    }
+
+    .activity-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green);
+    }
+
+    .activity-live::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: nowPulse 2.5s ease-in-out infinite;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 8px 0;
+      overflow: hidden;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding: 24px 26px;
+      border-top: 1px solid var(--border-muted);
+    }
+
+    .timeline-item:first-child {
+      border-top: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 176px;
+      top: 30px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .timeline-when {
+      color: var(--text-muted);
+      font: 600 10px/1.5 JetBrains Mono, monospace;
+    }
+
+    .timeline-body {
+      padding-left: 22px;
+    }
+
+    .timeline-body h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .timeline-body p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .palette-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: grid;
+      place-items: start center;
+      padding: min(16vh, 140px) 16px 24px;
+      background: rgba(0,0,0,.48);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .16s ease, visibility .16s ease;
+    }
+
+    .palette-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .command-palette {
+      width: min(640px,100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 28px 90px rgba(0,0,0,.34);
+      transform: translateY(-8px) scale(.985);
+      transition: transform .16s ease;
+    }
+
+    .palette-backdrop.open .command-palette {
+      transform: none;
+    }
+
+    .palette-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .palette-search span {
+      color: var(--accent);
+      font: 700 12px/1 JetBrains Mono, monospace;
+    }
+
+    .palette-search input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font: 500 14px/1.4 Inter, sans-serif;
+    }
+
+    .palette-results {
+      max-height: 390px;
+      overflow-y: auto;
+      padding: 7px;
+    }
+
+    .palette-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 10px;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .palette-item:hover,
+    .palette-item.selected {
+      background: var(--accent-soft);
+    }
+
+    .palette-item code {
+      min-width: 34px;
+      color: var(--accent);
+      font: 600 10px/1 JetBrains Mono, monospace;
+    }
+
+    .palette-item span {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .palette-item small {
+      margin-left: auto;
+      color: var(--text-muted);
+      font: 500 9px/1 JetBrains Mono, monospace;
+    }
+
+    .palette-empty {
+      padding: 26px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .palette-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 4px;
+      padding: 3px 6px;
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      color: var(--text-muted);
+      font: 600 9px/1 JetBrains Mono, monospace;
+    }
+
+    .site-toast {
+      position: fixed;
+      z-index: 4000;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 18px);
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      font: 600 10px/1.4 JetBrains Mono, monospace;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+    }
+
+    .site-toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    body.dev-mode::after {
+      opacity: .34;
+      background-size: 32px 32px;
+    }
+
+    body.dev-mode .section {
+      outline: 1px dashed color-mix(in srgb,var(--accent) 24%,transparent);
+      outline-offset: -1px;
+    }
+
+    @media (max-width: 920px) {
+      .now-grid { grid-template-columns: 1fr; }
+      .architecture-grid { grid-template-columns: 1fr; }
+      .arch-node:not(:last-child)::after {
+        content: "↓";
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -18px;
+        transform: translateX(-50%);
+      }
+      .architecture-sidecar { grid-template-columns: repeat(2,1fr); }
+      .activity-strip { grid-template-columns: repeat(2,1fr); }
+      .activity-cell:nth-child(3) { border-left: 0; border-top: 1px solid var(--border-muted); }
+      .activity-cell:nth-child(4) { border-top: 1px solid var(--border-muted); }
+    }
+
+    @media (max-width: 650px) {
+      .activity-strip { grid-template-columns: 1fr; }
+      .activity-cell,
+      .activity-cell:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--border-muted);
+      }
+      .activity-cell:first-child { border-top: 0; }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .timeline-item::before { left: 18px; top: 29px; }
+      .timeline-when,.timeline-body { padding-left: 18px; }
+      .architecture-sidecar { grid-template-columns: 1fr; }
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 920px) {
@@ -1391,6 +1997,38 @@
       </div>
     </section>
 
+
+    <section class="section" id="now">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="now.label">Now</div>
+            <h2 data-i18n="now.title">What I’m focused on right now.</h2>
+          </div>
+          <p data-i18n="now.lead">A living snapshot of the areas I’m actively pushing forward rather than another static skill list.</p>
+        </div>
+        <div class="now-grid">
+          <article class="now-card reveal">
+            <div class="now-kicker" data-i18n="now.active">Currently building & learning</div>
+            <h3 data-i18n="now.cardTitle">Developer tooling around real systems.</h3>
+            <p data-i18n="now.copy">Local AI, safer MCP integrations, backend workflows, PowerShell automation and homelab infrastructure are where most of my experimentation is happening.</p>
+            <div class="focus-pills"><span>Local AI</span><span>MCP</span><span>.NET</span><span>PowerShell</span><span>Homelab</span><span>DX</span></div>
+          </article>
+          <aside class="presence-card reveal">
+            <div class="now-kicker">BENCE.DEV</div>
+            <h3 data-i18n="status.title">System status</h3>
+            <div class="presence-lines">
+              <div><span>location</span><span>Budapest</span></div>
+              <div><span>focus</span><span>backend / systems</span></div>
+              <div><span>platform</span><span>Windows + Linux</span></div>
+              <div><span>editor</span><span>VS Code / Visual Studio</span></div>
+              <div><span>status</span><span data-i18n="status.building">building</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="about">
       <div class="container">
         <div class="section-heading reveal">
@@ -1456,6 +2094,32 @@
       </div>
     </section>
 
+
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="arch.label">How I think about systems</div>
+            <h2 data-i18n="arch.title">The application is only one part of the system.</h2>
+          </div>
+          <p data-i18n="arch.lead">I usually work across the path from client request to application logic, data, identity, deployment and operations.</p>
+        </div>
+        <div class="architecture-panel reveal">
+          <div class="architecture-grid">
+            <div class="arch-node">Browser / Client</div>
+            <div class="arch-node">ASP.NET Core</div>
+            <div class="arch-node">REST API</div>
+            <div class="arch-node">SQL Server</div>
+            <div class="arch-node">Ops / Automation</div>
+          </div>
+          <div class="architecture-sidecar">
+            <span>Microsoft Entra ID</span><span>IIS / Docker</span><span>GitHub Actions</span><span>Monitoring / Diagnostics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <section class="section" id="work">
       <div class="container">
         <div class="section-heading reveal">
@@ -1466,8 +2130,16 @@
           <p data-i18n="work.lead">Public repositories link directly to source. Private or internal systems are described at a higher level without exposing sensitive implementation details.</p>
         </div>
 
+        <div class="project-filter reveal" aria-label="Project filters">
+          <button type="button" class="active" data-filter="all" data-i18n="filter.all">All</button>
+          <button type="button" data-filter="open-source" data-i18n="filter.open">Open source</button>
+          <button type="button" data-filter="backend" data-i18n="filter.backend">Backend</button>
+          <button type="button" data-filter="infrastructure" data-i18n="filter.infra">Infrastructure</button>
+          <button type="button" data-filter="automation" data-i18n="filter.automation">Automation</button>
+        </div>
+
         <div class="project-grid">
-          <a class="project-card reveal" href="https://github.com/itsmebencebudai/clast" target="_blank" rel="noopener noreferrer">
+          <a class="project-card reveal" id="project-clast" data-category="open-source automation" href="/projects/clast/">
             <div class="project-top">
               <span class="project-status" data-i18n="project.clast.status">Public · open source</span>
               <span class="project-arrow" aria-hidden="true">↗</span>
@@ -1475,28 +2147,75 @@
             <img class="project-icon" src="https://skillicons.dev/icons?i=powershell" alt="" width="58" height="58" loading="lazy">
             <h3>CopyLast / clast</h3>
             <p data-i18n="project.clast.copy">A PowerShell 7 utility for copying the previous command together with the output you actually saw. It uses the session transcript without replacing or wrapping the native prompt.</p>
+            <div class="project-preview terminal" aria-hidden="true"><span class="prompt">PS&gt;</span> git status<br><span class="prompt">PS&gt;</span> clast<br><span class="ok">✓ previous command + output copied</span></div>
+            <div class="impact-row"><span>PowerShell 7+</span><span>·</span><span>MIT</span><span>·</span><span>No prompt replacement</span></div>
+            <span class="project-open" data-i18n="project.case">Open case study →</span>
             <div class="project-tags"><span>PowerShell 7</span><span>Windows</span><span>CLI</span><span>MIT</span></div>
           </a>
 
-          <article class="project-card reveal">
+          <a class="project-card reveal" id="project-systems" data-category="backend automation" href="/projects/systems/">
             <div class="project-top">
               <span class="project-status private" data-i18n="project.systems.status">Private · systems work</span>
+              <span class="project-arrow" aria-hidden="true">→</span>
             </div>
             <div class="project-icon fallback" aria-hidden="true">API</div>
             <h3 data-i18n="project.systems.title">Backend & workflow systems</h3>
             <p data-i18n="project.systems.copy">ASP.NET Core web and API systems with SQL Server, authentication, workflow automation, admin interfaces, deployment and hardware-adjacent integrations.</p>
+            <div class="project-preview flow-preview" aria-hidden="true"><span>Client</span><i>→</i><span>API</span><i>→</i><span>SQL</span><i>→</i><span>Ops</span></div>
+            <div class="impact-row"><span>OAuth</span><span>·</span><span>SQL-backed</span><span>·</span><span>Self-hosted</span></div>
+            <span class="project-open" data-i18n="project.case">Open case study →</span>
             <div class="project-tags"><span>C#</span><span>ASP.NET Core</span><span>SQL Server</span><span>OAuth</span><span>IIS</span></div>
-          </article>
+          </a>
 
-          <article class="project-card reveal">
+          <a class="project-card reveal" id="project-homelab" data-category="infrastructure automation" href="/projects/homelab/">
             <div class="project-top">
               <span class="project-status" data-i18n="project.homelab.status">Homelab · running systems</span>
+              <span class="project-arrow" aria-hidden="true">→</span>
             </div>
             <div class="project-icon fallback" aria-hidden="true">LAB</div>
             <h3 data-i18n="project.homelab.title">Self-hosted homelab</h3>
             <p data-i18n="project.homelab.copy">A practical environment for self-hosting, networking, remote access, containers, monitoring and experimenting with deployment and developer tooling.</p>
+            <div class="project-preview flow-preview" aria-hidden="true"><span>Device</span><i>→</i><span>Tailnet</span><i>→</i><span>Host</span><i>→</i><span>Services</span></div>
+            <div class="impact-row"><span>Remote access</span><span>·</span><span>Monitoring</span><span>·</span><span>Recovery</span></div>
+            <span class="project-open" data-i18n="project.case">Open case study →</span>
             <div class="project-tags"><span>Windows Server</span><span>Docker</span><span>Tailscale</span><span>Pi-hole</span><span>Nextcloud</span></div>
-          </article>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="activity">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="activity.label">Live GitHub</div>
+            <h2 data-i18n="activity.title">A small live pulse, not a wall of stats.</h2>
+          </div>
+          <p data-i18n="activity.lead">Public GitHub data is loaded directly in the browser with a cached fallback, so this stays useful without exposing tokens.</p>
+        </div>
+        <div class="activity-strip reveal" id="github-activity">
+          <div class="activity-cell"><div class="activity-label" data-i18n="activity.latest">Latest public activity</div><div class="activity-value activity-live" id="gh-latest">Loading…</div><div class="activity-sub" id="gh-latest-time">GitHub API</div></div>
+          <div class="activity-cell"><div class="activity-label" data-i18n="activity.repos">Public repos</div><div class="activity-value big" id="gh-repos">—</div><div class="activity-sub">@itsmebencebudai</div></div>
+          <div class="activity-cell"><div class="activity-label">CopyLast</div><div class="activity-value big" id="gh-stars">—</div><div class="activity-sub" data-i18n="activity.stars">stars</div></div>
+          <div class="activity-cell"><div class="activity-label" data-i18n="activity.updated">Data refreshed</div><div class="activity-value" id="gh-refreshed">—</div><div class="activity-sub" data-i18n="activity.cached">30 min local cache</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="timeline.label">Path so far</div>
+            <h2 data-i18n="timeline.title">Development, systems and learning in parallel.</h2>
+          </div>
+          <p data-i18n="timeline.lead">Not a CV dump—just the threads that explain why the portfolio spans backend development, infrastructure and tooling.</p>
+        </div>
+        <div class="timeline reveal">
+          <article class="timeline-item"><div class="timeline-when" data-i18n="timeline.current">Current</div><div class="timeline-body"><h3>HUN-REN · IT / software development</h3><p data-i18n="timeline.work">Backend systems, web/API development, deployment, automation and operational tooling.</p></div></article>
+          <article class="timeline-item"><div class="timeline-when" data-i18n="timeline.studyWhen">Ongoing</div><div class="timeline-body"><h3>Óbuda University · NIK</h3><p data-i18n="timeline.study">Computer Science Engineering (BProf), connecting formal study with real systems work.</p></div></article>
+          <article class="timeline-item"><div class="timeline-when" data-i18n="timeline.sideWhen">Always running</div><div class="timeline-body"><h3 data-i18n="timeline.sideTitle">Open source, homelab & experiments</h3><p data-i18n="timeline.side">Small developer tools, local AI, MCP integrations, self-hosting and infrastructure experiments.</p></div></article>
         </div>
       </div>
     </section>
@@ -1563,10 +2282,19 @@
     </section>
   </main>
 
+
+  <div class="palette-backdrop" id="palette-backdrop" aria-hidden="true">
+    <div class="command-palette" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette-search"><span>&gt;</span><input id="palette-input" type="text" autocomplete="off" spellcheck="false" placeholder="Search commands…"><span class="palette-hint">ESC</span></div>
+      <div class="palette-results" id="palette-results"></div>
+    </div>
+  </div>
+  <div class="site-toast" id="site-toast" role="status" aria-live="polite"></div>
+
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Budai Bence</span>
-      <span><a href="https://github.com/itsmebencebudai/itsmebencebudai.github.io" target="_blank" rel="noopener noreferrer" data-i18n="footer.source">View site source on GitHub</a></span>
+      <span><a href="/changelog/" data-i18n="footer.changelog">Changelog</a> · <a href="https://github.com/itsmebencebudai/itsmebencebudai.github.io" target="_blank" rel="noopener noreferrer" data-i18n="footer.source">View site source on GitHub</a> <span class="palette-hint">Ctrl K</span></span>
     </div>
   </footer>
 
@@ -1693,6 +2421,42 @@
         "social.copy": "A nyilvános kapcsolatfelvételt szakmai közösségi profilokra korlátozom. Telefonszámot és közvetlen e-mail címet szándékosan nem teszek közzé ezen az oldalon.",
         "social.repos": "Repository-k böngészése",
         "social.note": "Építeni, automatizálni, tanulni, ismételni.",
+        "now.label": "Most",
+        "now.title": "Amire jelenleg a legtöbb figyelmet fordítom.",
+        "now.lead": "Egy élő pillanatkép azokról a területekről, amelyeket aktívan fejlesztek — nem még egy statikus skill lista.",
+        "now.active": "Éppen építem & tanulom",
+        "now.cardTitle": "Fejlesztői tooling valódi rendszerek körül.",
+        "now.copy": "Helyi AI, biztonságosabb MCP integrációk, backend workflow-k, PowerShell automatizálás és homelab infrastruktúra adja a legtöbb jelenlegi kísérletezést.",
+        "status.title": "Rendszerállapot",
+        "status.building": "építés alatt",
+        "arch.label": "Ahogy a rendszerekről gondolkodom",
+        "arch.title": "Az alkalmazás csak egy része a rendszernek.",
+        "arch.lead": "Általában a kliens kérésétől az alkalmazáslogikán és adaton át az identity, deployment és üzemeltetés teljes útját nézem.",
+        "filter.all": "Összes",
+        "filter.open": "Open source",
+        "filter.backend": "Backend",
+        "filter.infra": "Infrastruktúra",
+        "filter.automation": "Automatizálás",
+        "project.case": "Esettanulmány megnyitása →",
+        "activity.label": "Élő GitHub",
+        "activity.title": "Egy kis élő pulzus, nem egy falnyi statisztika.",
+        "activity.lead": "A publikus GitHub adatok közvetlenül a böngészőben töltődnek be helyi cache-sel, tokenek publikálása nélkül.",
+        "activity.latest": "Legutóbbi publikus aktivitás",
+        "activity.repos": "Publikus repo-k",
+        "activity.stars": "csillag",
+        "activity.updated": "Adat frissítve",
+        "activity.cached": "30 perces helyi cache",
+        "timeline.label": "Az út eddig",
+        "timeline.title": "Fejlesztés, rendszerek és tanulás párhuzamosan.",
+        "timeline.lead": "Nem CV-másolat — csak azok a szálak, amelyek megmagyarázzák, miért fér meg egymás mellett backend, infrastruktúra és tooling.",
+        "timeline.current": "Jelenleg",
+        "timeline.work": "Backend rendszerek, web/API fejlesztés, deployment, automatizálás és operációs tooling.",
+        "timeline.studyWhen": "Folyamatban",
+        "timeline.study": "Üzemmérnök-informatikus (BProf), az egyetemi tudás összekötése valódi rendszerekkel.",
+        "timeline.sideWhen": "Folyamatos",
+        "timeline.sideTitle": "Open source, homelab & kísérletek",
+        "timeline.side": "Kisebb fejlesztői eszközök, helyi AI, MCP integrációk, self-hosting és infrastruktúra-kísérletek.",
+        "footer.changelog": "Változásnapló",
         "footer.source": "Az oldal forráskódja GitHubon"
       }
     };
@@ -1861,6 +2625,10 @@
       document.title = active === "hu"
         ? "Budai Bence — Szoftverfejlesztő"
         : "Budai Bence — Software Developer";
+      if (typeof renderGithubPulse === "function") {
+        try { const cached = JSON.parse(localStorage.getItem("portfolioGithubPulse:v1") || "null"); if (cached) renderGithubPulse(cached); } catch (_) {}
+      }
+      if (paletteBackdrop && paletteBackdrop.classList.contains("open")) renderPalette();
     }
 
     function configureSocials() {
@@ -1874,6 +2642,201 @@
         link.hidden = false;
       });
     }
+
+
+    const activityLabels = {
+      en: { push: "Pushed to", create: "Created", release: "Released", issue: "Issue activity in", pr: "Pull request in", other: "Activity in", unavailable: "Public activity unavailable" },
+      hu: { push: "Push ide:", create: "Létrehozva:", release: "Release:", issue: "Issue aktivitás:", pr: "Pull request:", other: "Aktivitás:", unavailable: "A publikus aktivitás nem elérhető" }
+    };
+
+    function currentLang() {
+      return document.documentElement.lang === "hu" ? "hu" : "en";
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("site-toast");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    document.querySelectorAll(".project-filter button").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const filter = button.dataset.filter;
+        document.querySelectorAll(".project-filter button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        document.querySelectorAll(".project-card[data-category]").forEach(function(card) {
+          const visible = filter === "all" || card.dataset.category.split(/\s+/).includes(filter);
+          card.classList.toggle("filtered-out", !visible);
+        });
+      });
+    });
+
+    const githubCacheKey = "portfolioGithubPulse:v1";
+    const githubCacheMs = 30 * 60 * 1000;
+
+    function eventText(event, lang) {
+      const labels = activityLabels[lang];
+      const repo = event && event.repo ? event.repo.name.replace("itsmebencebudai/", "") : "GitHub";
+      if (!event) return labels.unavailable;
+      if (event.type === "PushEvent") return labels.push + " " + repo;
+      if (event.type === "CreateEvent") return labels.create + " " + repo;
+      if (event.type === "ReleaseEvent") return labels.release + " " + repo;
+      if (event.type === "IssuesEvent") return labels.issue + " " + repo;
+      if (event.type === "PullRequestEvent") return labels.pr + " " + repo;
+      return labels.other + " " + repo;
+    }
+
+    function relativeTime(iso, lang) {
+      if (!iso) return "—";
+      const delta = Math.round((new Date(iso).getTime() - Date.now()) / 1000);
+      const abs = Math.abs(delta);
+      const rtf = new Intl.RelativeTimeFormat(lang === "hu" ? "hu" : "en", { numeric: "auto" });
+      if (abs < 60) return rtf.format(delta, "second");
+      if (abs < 3600) return rtf.format(Math.round(delta / 60), "minute");
+      if (abs < 86400) return rtf.format(Math.round(delta / 3600), "hour");
+      return rtf.format(Math.round(delta / 86400), "day");
+    }
+
+    function renderGithubPulse(data) {
+      const lang = currentLang();
+      const latest = data.events && data.events[0];
+      const latestEl = document.getElementById("gh-latest");
+      const timeEl = document.getElementById("gh-latest-time");
+      const reposEl = document.getElementById("gh-repos");
+      const starsEl = document.getElementById("gh-stars");
+      const refreshedEl = document.getElementById("gh-refreshed");
+      if (latestEl) latestEl.textContent = eventText(latest, lang);
+      if (timeEl) timeEl.textContent = latest ? relativeTime(latest.created_at, lang) : "GitHub API";
+      if (reposEl) reposEl.textContent = data.user && Number.isFinite(data.user.public_repos) ? data.user.public_repos : "—";
+      if (starsEl) starsEl.textContent = data.clast && Number.isFinite(data.clast.stargazers_count) ? data.clast.stargazers_count : "—";
+      if (refreshedEl) refreshedEl.textContent = relativeTime(data.fetchedAt, lang);
+    }
+
+    async function loadGithubPulse(force) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(githubCacheKey) || "null");
+        if (!force && cached && Date.now() - new Date(cached.fetchedAt).getTime() < githubCacheMs) {
+          renderGithubPulse(cached);
+          return;
+        }
+
+        const [eventsRes, userRes, clastRes] = await Promise.all([
+          fetch("https://api.github.com/users/itsmebencebudai/events/public?per_page=5", { headers: { Accept: "application/vnd.github+json" } }),
+          fetch("https://api.github.com/users/itsmebencebudai", { headers: { Accept: "application/vnd.github+json" } }),
+          fetch("https://api.github.com/repos/itsmebencebudai/clast", { headers: { Accept: "application/vnd.github+json" } })
+        ]);
+
+        if (!eventsRes.ok || !userRes.ok || !clastRes.ok) throw new Error("GitHub API unavailable");
+
+        const data = {
+          events: await eventsRes.json(),
+          user: await userRes.json(),
+          clast: await clastRes.json(),
+          fetchedAt: new Date().toISOString()
+        };
+        localStorage.setItem(githubCacheKey, JSON.stringify(data));
+        renderGithubPulse(data);
+      } catch (error) {
+        const cached = JSON.parse(localStorage.getItem(githubCacheKey) || "null");
+        if (cached) renderGithubPulse(cached);
+        else {
+          const latestEl = document.getElementById("gh-latest");
+          if (latestEl) latestEl.textContent = activityLabels[currentLang()].unavailable;
+        }
+      }
+    }
+
+    const paletteBackdrop = document.getElementById("palette-backdrop");
+    const paletteInput = document.getElementById("palette-input");
+    const paletteResults = document.getElementById("palette-results");
+    let paletteSelected = 0;
+
+    function paletteCommands() {
+      const hu = currentLang() === "hu";
+      return [
+        { icon: "⌘", label: hu ? "Ugrás a projektekhez" : "Go to projects", hint: "#work", action: () => location.href = "#work" },
+        { icon: "GH", label: hu ? "GitHub megnyitása" : "Open GitHub", hint: "external", action: () => window.open("https://github.com/itsmebencebudai", "_blank", "noopener") },
+        { icon: "CL", label: "CopyLast / clast", hint: "case study", action: () => location.href = "/projects/clast/" },
+        { icon: "API", label: hu ? "Backend esettanulmány" : "Backend case study", hint: "case study", action: () => location.href = "/projects/systems/" },
+        { icon: "LAB", label: hu ? "Homelab esettanulmány" : "Homelab case study", hint: "case study", action: () => location.href = "/projects/homelab/" },
+        { icon: "↔", label: hu ? "Nyelv váltása" : "Switch language", hint: hu ? "EN" : "HU", action: () => applyLanguage(hu ? "en" : "hu") },
+        { icon: "◐", label: hu ? "Téma váltása" : "Cycle theme", hint: "auto/dark/light", action: () => cycleTheme() },
+        { icon: "Δ", label: hu ? "Változásnapló" : "Open changelog", hint: "/changelog", action: () => location.href = "/changelog/" }
+      ].concat(SOCIALS.linkedin ? [{ icon: "in", label: "LinkedIn", hint: "external", action: () => window.open(SOCIALS.linkedin, "_blank", "noopener") }] : []);
+    }
+
+    function renderPalette() {
+      const query = paletteInput.value.trim().toLowerCase();
+      const items = paletteCommands().filter(item => item.label.toLowerCase().includes(query) || item.hint.toLowerCase().includes(query));
+      paletteResults.innerHTML = "";
+      if (!items.length) {
+        paletteResults.innerHTML = '<div class="palette-empty">No matching commands.</div>';
+        return;
+      }
+      paletteSelected = Math.min(paletteSelected, items.length - 1);
+      items.forEach(function(item, index) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "palette-item" + (index === paletteSelected ? " selected" : "");
+        button.innerHTML = "<code>" + item.icon + "</code><span>" + item.label + "</span><small>" + item.hint + "</small>";
+        button.addEventListener("mouseenter", () => { paletteSelected = index; renderPalette(); });
+        button.addEventListener("click", () => { closePalette(); item.action(); });
+        paletteResults.appendChild(button);
+      });
+    }
+
+    function openPalette() {
+      paletteBackdrop.classList.add("open");
+      paletteBackdrop.setAttribute("aria-hidden", "false");
+      paletteInput.value = "";
+      paletteSelected = 0;
+      renderPalette();
+      setTimeout(() => paletteInput.focus(), 20);
+    }
+
+    function closePalette() {
+      paletteBackdrop.classList.remove("open");
+      paletteBackdrop.setAttribute("aria-hidden", "true");
+    }
+
+    paletteInput.addEventListener("input", () => { paletteSelected = 0; renderPalette(); });
+    paletteBackdrop.addEventListener("click", event => { if (event.target === paletteBackdrop) closePalette(); });
+
+    document.addEventListener("keydown", function(event) {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        paletteBackdrop.classList.contains("open") ? closePalette() : openPalette();
+        return;
+      }
+      if (!paletteBackdrop.classList.contains("open")) return;
+      const items = Array.from(paletteResults.querySelectorAll(".palette-item"));
+      if (event.key === "Escape") { closePalette(); return; }
+      if (event.key === "ArrowDown" && items.length) { event.preventDefault(); paletteSelected = (paletteSelected + 1) % items.length; renderPalette(); }
+      if (event.key === "ArrowUp" && items.length) { event.preventDefault(); paletteSelected = (paletteSelected - 1 + items.length) % items.length; renderPalette(); }
+      if (event.key === "Enter" && items[paletteSelected]) { event.preventDefault(); items[paletteSelected].click(); }
+    });
+
+    const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    let konamiPos = 0;
+    document.addEventListener("keydown", function(event) {
+      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+      konamiPos = key === konami[konamiPos] ? konamiPos + 1 : 0;
+      if (konamiPos === konami.length) {
+        document.body.classList.toggle("dev-mode");
+        showToast(document.body.classList.contains("dev-mode") ? "developer mode: ON" : "developer mode: OFF");
+        konamiPos = 0;
+      }
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("/service-worker.js").catch(() => {}));
+    }
+
+    loadGithubPulse(false);
+
 
     const savedTheme = localStorage.getItem("preferredTheme") || "auto";
     root.dataset.theme = ["auto", "dark", "light"].includes(savedTheme) ? savedTheme : "auto";
