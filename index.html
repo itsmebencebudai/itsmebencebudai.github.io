@@ -1,56 +1,157 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en" data-theme="auto">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090b10">
-  <meta name="description" content="Budai Bence software developer portfolio — .NET, backend systems, automation, infrastructure and developer tooling.">
+  <meta name="theme-color" content="#0d1117" id="theme-color">
+  <meta name="description" content="Budai Bence — software developer building backend systems, automation, infrastructure and developer tooling.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Budai Bence — Software Developer">
-  <meta property="og:description" content=".NET backend, systems engineering, automation and developer tooling.">
+  <meta property="og:description" content="Backend systems, automation, infrastructure and developer tooling with C#, .NET, PowerShell and modern infrastructure.">
   <meta property="og:url" content="https://itsmebencebudai.github.io/">
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/145671524?v=4">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://itsmebencebudai.github.io/">
   <title>Budai Bence — Software Developer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://skillicons.dev">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Budai Bence",
+    "url": "https://itsmebencebudai.github.io/",
+    "sameAs": [
+      "https://github.com/itsmebencebudai"
+    ],
+    "jobTitle": "Software Developer",
+    "knowsAbout": [
+      "C#",
+      ".NET",
+      "ASP.NET Core",
+      "SQL Server",
+      "PowerShell",
+      "Windows Server",
+      "Docker",
+      "IIS",
+      "Tailscale"
+    ]
+  }
+  </script>
+
   <style>
     :root {
-      --bg: #090b10;
-      --bg-soft: #0d1017;
-      --surface: rgba(17, 21, 31, .74);
-      --surface-solid: #11151f;
-      --surface-2: #151b28;
-      --line: rgba(255,255,255,.09);
-      --line-strong: rgba(255,255,255,.16);
-      --text: #f4f7fb;
-      --muted: #98a2b3;
-      --muted-2: #667085;
-      --blue: #78a8ff;
-      --violet: #b49bff;
-      --cyan: #69e4ff;
-      --green: #69e6a6;
-      --amber: #f4cf72;
-      --max: 1180px;
-      --radius: 22px;
-      --shadow: 0 24px 80px rgba(0,0,0,.32);
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --bg-subtle: #f6f8fa;
+      --surface: #ffffff;
+      --surface-hover: #f6f8fa;
+      --border: #d0d7de;
+      --border-muted: #d8dee4;
+      --text: #1f2328;
+      --text-soft: #59636e;
+      --text-muted: #6e7781;
+      --accent: #0969da;
+      --accent-strong: #0550ae;
+      --accent-soft: rgba(9, 105, 218, .10);
+      --green: #1a7f37;
+      --green-soft: rgba(26, 127, 55, .10);
+      --purple: #8250df;
+      --orange: #bc4c00;
+      --shadow: 0 16px 44px rgba(31, 35, 40, .08);
+      --shadow-hover: 0 20px 52px rgba(31, 35, 40, .13);
+      --max: 1120px;
+      --radius: 18px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --bg-subtle: #161b22;
+        --surface: #0d1117;
+        --surface-hover: #161b22;
+        --border: #30363d;
+        --border-muted: #21262d;
+        --text: #f0f6fc;
+        --text-soft: #b1bac4;
+        --text-muted: #8b949e;
+        --accent: #58a6ff;
+        --accent-strong: #79c0ff;
+        --accent-soft: rgba(56, 139, 253, .14);
+        --green: #3fb950;
+        --green-soft: rgba(46, 160, 67, .14);
+        --purple: #bc8cff;
+        --orange: #ffa657;
+        --shadow: 0 18px 54px rgba(0, 0, 0, .26);
+        --shadow-hover: 0 24px 64px rgba(0, 0, 0, .38);
+      }
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #ffffff;
+      --bg-subtle: #f6f8fa;
+      --surface: #ffffff;
+      --surface-hover: #f6f8fa;
+      --border: #d0d7de;
+      --border-muted: #d8dee4;
+      --text: #1f2328;
+      --text-soft: #59636e;
+      --text-muted: #6e7781;
+      --accent: #0969da;
+      --accent-strong: #0550ae;
+      --accent-soft: rgba(9, 105, 218, .10);
+      --green: #1a7f37;
+      --green-soft: rgba(26, 127, 55, .10);
+      --purple: #8250df;
+      --orange: #bc4c00;
+      --shadow: 0 16px 44px rgba(31, 35, 40, .08);
+      --shadow-hover: 0 20px 52px rgba(31, 35, 40, .13);
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --bg-subtle: #161b22;
+      --surface: #0d1117;
+      --surface-hover: #161b22;
+      --border: #30363d;
+      --border-muted: #21262d;
+      --text: #f0f6fc;
+      --text-soft: #b1bac4;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-strong: #79c0ff;
+      --accent-soft: rgba(56, 139, 253, .14);
+      --green: #3fb950;
+      --green-soft: rgba(46, 160, 67, .14);
+      --purple: #bc8cff;
+      --orange: #ffa657;
+      --shadow: 0 18px 54px rgba(0, 0, 0, .26);
+      --shadow-hover: 0 24px 64px rgba(0, 0, 0, .38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at 18% 5%, rgba(104,139,255,.13), transparent 28rem),
-        radial-gradient(circle at 85% 15%, rgba(180,155,255,.10), transparent 26rem),
-        linear-gradient(180deg, #090b10 0%, #0a0d13 55%, #090b10 100%);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.65;
-      overflow-x: hidden;
+      transition: background .2s ease, color .2s ease;
     }
 
     body::before {
@@ -58,104 +159,114 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .16;
-      background-image:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, #000, transparent 82%);
       z-index: -1;
+      background:
+        radial-gradient(circle at 20% 0%, var(--accent-soft), transparent 28rem),
+        radial-gradient(circle at 85% 22%, rgba(130, 80, 223, .07), transparent 26rem);
+      opacity: .72;
     }
 
-    ::selection { background: rgba(120,168,255,.28); color: white; }
-    a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: var(--accent-soft);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
 
     .skip-link {
       position: fixed;
       left: 16px;
       top: -60px;
-      z-index: 999;
+      z-index: 9999;
       padding: 10px 14px;
-      border-radius: 10px;
-      background: white;
-      color: #111;
+      border-radius: 8px;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      font-weight: 700;
       transition: top .2s ease;
     }
-    .skip-link:focus { top: 16px; }
 
-    .shell {
-      width: min(calc(100% - 40px), var(--max));
-      margin-inline: auto;
+    .skip-link:focus {
+      top: 16px;
     }
 
-    .nav-wrap {
+    /* NAVIGATION */
+
+    .nav-shell {
       position: fixed;
-      z-index: 100;
-      top: 16px;
+      top: 0;
       left: 0;
       right: 0;
-      pointer-events: none;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-muted);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(18px);
     }
 
     .nav {
-      min-height: 64px;
+      min-height: 68px;
       display: flex;
       align-items: center;
-      gap: 24px;
-      padding: 10px 12px 10px 18px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(9,11,16,.78);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.24);
-      pointer-events: auto;
+      gap: 20px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       text-decoration: none;
       font-family: Manrope, sans-serif;
       font-weight: 800;
-      letter-spacing: -.02em;
+      letter-spacing: -.025em;
       white-space: nowrap;
     }
 
-    .brand-mark {
-      display: grid;
-      place-items: center;
+    .brand-avatar {
       width: 34px;
       height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--blue), var(--violet));
-      color: #090b10;
-      font: 800 13px/1 Manrope, sans-serif;
-      box-shadow: 0 8px 24px rgba(120,168,255,.18);
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      background: var(--bg-subtle);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
       margin-left: auto;
     }
 
     .nav-links a {
       padding: 9px 11px;
-      border-radius: 9px;
-      color: var(--muted);
+      border-radius: 7px;
+      color: var(--text-soft);
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
-      transition: color .2s ease, background .2s ease;
+      transition: color .18s ease, background .18s ease;
     }
 
     .nav-links a:hover,
     .nav-links a:focus-visible {
       color: var(--text);
-      background: rgba(255,255,255,.055);
+      background: var(--bg-subtle);
     }
 
     .nav-actions {
@@ -164,630 +275,596 @@
       gap: 8px;
     }
 
-    .lang {
+    .segmented {
       display: flex;
+      align-items: center;
       padding: 3px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-subtle);
     }
 
-    .lang button {
-      min-width: 34px;
+    .segmented button {
       border: 0;
-      border-radius: 7px;
-      padding: 7px 8px;
+      min-width: 34px;
+      padding: 6px 8px;
+      border-radius: 5px;
       background: transparent;
-      color: var(--muted);
-      font: 500 11px/1 JetBrains Mono, monospace;
+      color: var(--text-muted);
+      font: 600 10px/1 JetBrains Mono, monospace;
       cursor: pointer;
     }
 
-    .lang button.active {
-      background: rgba(120,168,255,.14);
-      color: var(--blue);
+    .segmented button.active {
+      background: var(--surface);
+      color: var(--accent);
+      box-shadow: 0 1px 2px rgba(31, 35, 40, .08);
     }
 
-    .menu-btn {
-      display: none;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: rgba(255,255,255,.025);
+    .icon-button {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .icon-button:hover {
+      background: var(--bg-subtle);
       color: var(--text);
-      cursor: pointer;
     }
 
-    .menu-btn span,
-    .menu-btn span::before,
-    .menu-btn span::after {
-      display: block;
-      width: 17px;
-      height: 1.5px;
-      background: currentColor;
-      border-radius: 999px;
-      transition: .22s ease;
+    .menu-button {
+      display: none;
     }
 
-    .menu-btn span {
-      margin: auto;
-      position: relative;
-    }
-
-    .menu-btn span::before,
-    .menu-btn span::after {
-      content: "";
-      position: absolute;
-      left: 0;
-    }
-    .menu-btn span::before { top: -6px; }
-    .menu-btn span::after { top: 6px; }
-    .nav.open .menu-btn span { background: transparent; }
-    .nav.open .menu-btn span::before { top: 0; transform: rotate(45deg); }
-    .nav.open .menu-btn span::after { top: 0; transform: rotate(-45deg); }
-
-    main { overflow: hidden; }
+    /* HERO */
 
     .hero {
-      min-height: 100svh;
-      padding: 154px 0 88px;
-      display: grid;
-      align-items: center;
-      position: relative;
+      padding: 136px 0 74px;
+      text-align: center;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr);
-      gap: clamp(40px, 6vw, 78px);
-      align-items: center;
+    .hero-inner {
+      max-width: 920px;
+      margin-inline: auto;
     }
 
-    .eyebrow {
+    .hello {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 20px;
-      color: var(--blue);
-      font: 500 12px/1 JetBrains Mono, monospace;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--text-soft);
+      font-size: 15px;
+      font-weight: 600;
     }
 
     .hero h1 {
-      max-width: 830px;
       margin: 0;
-      font-family: Manrope, sans-serif;
-      font-size: clamp(50px, 7.6vw, 96px);
-      line-height: .98;
-      letter-spacing: -.065em;
-      font-weight: 800;
+      font: 800 clamp(44px, 7vw, 76px)/1.02 Manrope, sans-serif;
+      letter-spacing: -.055em;
     }
 
-    .gradient-text {
-      background: linear-gradient(95deg, #fff 5%, var(--blue) 45%, var(--violet) 78%, var(--cyan));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero-subtitle {
+      margin: 19px auto 0;
+      max-width: 800px;
+      color: var(--text-soft);
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.45;
+      font-weight: 600;
+      letter-spacing: -.015em;
     }
 
-    .hero-copy {
-      max-width: 680px;
-      margin: 27px 0 0;
-      color: #b7c0ce;
-      font-size: clamp(16px, 1.8vw, 19px);
-      line-height: 1.75;
+    .hero-visual {
+      margin: 38px auto 0;
+      max-width: 740px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-subtle);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      min-height: 240px;
+      object-fit: cover;
     }
 
     .hero-actions {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 11px;
-      margin-top: 34px;
+      gap: 10px;
+      margin-top: 26px;
     }
 
-    .btn {
+    .badge-button {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 9px;
-      min-height: 46px;
-      padding: 0 17px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255,255,255,.035);
+      min-height: 42px;
+      padding: 0 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
       color: var(--text);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    .btn:hover {
+    .badge-button:hover {
       transform: translateY(-2px);
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,.06);
+      border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+      background: var(--bg-subtle);
     }
 
-    .btn.primary {
-      border-color: transparent;
-      background: linear-gradient(135deg, #84b1ff, #a996ff);
-      color: #0a0c11;
-      box-shadow: 0 14px 34px rgba(120,168,255,.18);
+    .badge-button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
-    .btn.primary:hover { background: linear-gradient(135deg, #9ac0ff, #b6a7ff); }
+    html[data-theme="dark"] .badge-button.primary {
+      color: #0d1117;
+    }
 
-    .hero-note {
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="auto"] .badge-button.primary {
+        color: #0d1117;
+      }
+    }
+
+    .hero-meta {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 14px 24px;
-      margin-top: 28px;
-      color: var(--muted);
-      font: 500 12px/1.5 JetBrains Mono, monospace;
+      gap: 10px 18px;
+      margin-top: 19px;
+      color: var(--text-muted);
+      font-size: 12px;
     }
 
-    .hero-note span {
+    .hero-meta span {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
-    .hero-note span::before {
+    .hero-meta span::before {
       content: "";
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 18px rgba(105,230,166,.55);
     }
 
-    .profile-card {
-      position: relative;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.018)),
-        rgba(12,15,22,.74);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .profile-card::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -95px;
-      top: -95px;
-      border-radius: 50%;
-      background: rgba(120,168,255,.16);
-      filter: blur(18px);
-    }
-
-    .profile-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-    }
-
-    .avatar {
-      width: 62px;
-      height: 62px;
-      border-radius: 18px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.18);
-      background: var(--surface-2);
-    }
-
-    .profile-name {
-      margin: 0;
-      font: 800 18px/1.15 Manrope, sans-serif;
-      letter-spacing: -.025em;
-    }
-
-    .profile-role {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .profile-terminal {
-      position: relative;
-      margin-top: 20px;
-      padding: 16px;
-      min-height: 210px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(6,8,12,.72);
-      font: 500 12px/1.75 JetBrains Mono, monospace;
-      color: #aab4c3;
-    }
-
-    .terminal-bar {
-      display: flex;
-      gap: 6px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 12px;
-    }
-
-    .terminal-bar i {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #454d5b;
-    }
-
-    .terminal-line { display: block; }
-    .terminal-prompt { color: var(--green); }
-    .terminal-key { color: var(--blue); }
-    .terminal-value { color: #e7eaf0; }
-    .terminal-muted { color: #5f6978; }
+    /* SECTION BASE */
 
     .section {
-      padding: 104px 0;
-      position: relative;
+      padding: 76px 0;
+      border-top: 1px solid var(--border-muted);
     }
 
-    .section-head {
+    .section-heading {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
-      gap: 40px;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 410px);
+      gap: 34px;
       align-items: end;
-      margin-bottom: 42px;
+      margin-bottom: 34px;
     }
 
-    .kicker {
-      color: var(--blue);
-      font: 500 11px/1 JetBrains Mono, monospace;
+    .section-label {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font: 600 11px/1 JetBrains Mono, monospace;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      letter-spacing: .13em;
-      margin-bottom: 14px;
     }
 
     .section h2 {
       margin: 0;
-      font: 800 clamp(34px, 5vw, 60px)/1.05 Manrope, sans-serif;
-      letter-spacing: -.05em;
+      font: 800 clamp(30px, 4vw, 46px)/1.1 Manrope, sans-serif;
+      letter-spacing: -.04em;
     }
 
-    .section-intro {
+    .section-heading p {
       margin: 0;
-      color: var(--muted);
-      font-size: 15px;
+      color: var(--text-soft);
+      font-size: 14px;
       line-height: 1.8;
     }
 
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
+    /* ABOUT */
+
+    .about-copy {
+      max-width: 880px;
+      margin: 0 auto;
+      font-size: 17px;
+      color: var(--text-soft);
     }
 
-    .project {
-      grid-column: span 6;
+    .about-copy p {
+      margin: 0 0 18px;
+    }
+
+    .about-copy strong {
+      color: var(--text);
+    }
+
+    /* TECHNOLOGIES */
+
+    .icon-strip {
+      display: flex;
+      justify-content: center;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .icon-strip img {
+      min-width: 550px;
+      max-width: 760px;
+    }
+
+    .chip-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      color: var(--text-soft);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* FOCUS CARDS */
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .focus-card {
+      min-height: 228px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .focus-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+      box-shadow: var(--shadow);
+    }
+
+    .focus-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 28px;
+      border-radius: 11px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font: 700 13px/1 JetBrains Mono, monospace;
+    }
+
+    .focus-card h3 {
+      margin: 0 0 10px;
+      font: 700 18px/1.3 Manrope, sans-serif;
+      letter-spacing: -.02em;
+    }
+
+    .focus-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    /* PROJECTS */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .project-card {
       position: relative;
       display: flex;
       flex-direction: column;
       min-height: 330px;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
-      overflow: hidden;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
       text-decoration: none;
-      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
-    .project:hover {
-      transform: translateY(-4px);
-      border-color: rgba(120,168,255,.34);
-      background: linear-gradient(145deg, rgba(120,168,255,.08), rgba(255,255,255,.022));
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+      box-shadow: var(--shadow-hover);
+      background: var(--surface-hover);
     }
-
-    .project.featured {
-      grid-column: span 8;
-      min-height: 390px;
-    }
-
-    .project.compact {
-      grid-column: span 4;
-      min-height: 390px;
-    }
-
-    .project::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -80px;
-      bottom: -95px;
-      border-radius: 50%;
-      background: rgba(120,168,255,.10);
-      filter: blur(10px);
-      transition: transform .35s ease;
-    }
-
-    .project:hover::after { transform: scale(1.2); }
 
     .project-top {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 14px;
-      align-items: flex-start;
-      position: relative;
-      z-index: 1;
     }
 
-    .badge {
+    .project-status {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 6px 9px;
-      border: 1px solid var(--line);
+      padding: 5px 8px;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,255,255,.03);
-      font: 500 10px/1 JetBrains Mono, monospace;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      font: 600 10px/1 JetBrains Mono, monospace;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      letter-spacing: .05em;
     }
 
-    .badge.public::before,
-    .badge.private::before,
-    .badge.live::before {
+    .project-status::before {
       content: "";
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
+      background: var(--green);
     }
-    .badge.public::before { background: var(--green); }
-    .badge.private::before { background: var(--amber); }
-    .badge.live::before { background: var(--cyan); }
+
+    .project-status.private::before {
+      background: var(--orange);
+    }
 
     .project-arrow {
+      color: var(--text-muted);
       font-size: 20px;
-      color: var(--muted);
-      transition: transform .2s ease, color .2s ease;
-    }
-    .project:hover .project-arrow { transform: translate(3px,-3px); color: var(--blue); }
-
-    .project-body {
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-      padding-top: 58px;
+      transition: color .18s ease, transform .18s ease;
     }
 
-    .project h3 {
-      margin: 0 0 10px;
-      font: 800 27px/1.15 Manrope, sans-serif;
-      letter-spacing: -.035em;
+    .project-card:hover .project-arrow {
+      color: var(--accent);
+      transform: translate(2px, -2px);
     }
 
-    .project p {
-      max-width: 650px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
+    .project-icon {
+      width: 58px;
+      height: 58px;
+      margin: 34px 0 18px;
+      object-fit: contain;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 20px;
-    }
-
-    .tag {
-      padding: 5px 8px;
-      border-radius: 7px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-      color: #8994a5;
-      font: 500 10px/1 JetBrains Mono, monospace;
-    }
-
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .stack-card {
-      padding: 22px;
-      min-height: 230px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.022);
-    }
-
-    .stack-card .icon {
+    .project-icon.fallback {
       display: grid;
       place-items: center;
-      width: 38px;
-      height: 38px;
-      margin-bottom: 34px;
-      border-radius: 11px;
-      background: rgba(120,168,255,.10);
-      color: var(--blue);
-      font: 700 13px/1 JetBrains Mono, monospace;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-subtle);
+      color: var(--accent);
+      font: 700 14px/1 JetBrains Mono, monospace;
     }
 
-    .stack-card h3 {
-      margin: 0 0 12px;
-      font: 700 16px/1.2 Manrope, sans-serif;
-      letter-spacing: -.02em;
-    }
-
-    .stack-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .stack-list span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .stack-list span:not(:last-child)::after {
-      content: " /";
-      color: #49515e;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 18px;
-    }
-
-    .about-card {
-      padding: 30px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.022);
-    }
-
-    .about-card h3 {
-      margin: 0 0 16px;
-      font: 800 22px/1.2 Manrope, sans-serif;
+    .project-card h3 {
+      margin: 0 0 10px;
+      font: 800 24px/1.2 Manrope, sans-serif;
       letter-spacing: -.03em;
     }
 
-    .about-card p {
+    .project-card p {
       margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.85;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 20px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 22px;
-      padding: 22px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .timeline-item:first-child { border-top: 0; padding-top: 0; }
-
-    .timeline-label {
-      color: var(--muted-2);
-      font: 500 11px/1.5 JetBrains Mono, monospace;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-    }
-
-    .timeline-title {
-      margin: 0 0 5px;
-      font: 700 16px/1.3 Manrope, sans-serif;
-    }
-
-    .timeline-org {
-      color: var(--blue);
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .timeline-copy {
-      color: var(--muted);
+      color: var(--text-soft);
       font-size: 13px;
       line-height: 1.75;
     }
 
-    .connect {
-      padding: 42px;
-      border: 1px solid rgba(120,168,255,.20);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(120,168,255,.12), transparent 20rem),
-        radial-gradient(circle at 90% 80%, rgba(180,155,255,.10), transparent 18rem),
-        rgba(255,255,255,.025);
-      text-align: center;
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .project-tags span {
+      padding: 4px 7px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font: 600 10px/1 JetBrains Mono, monospace;
+    }
+
+    /* EXPLORING */
+
+    .explore-list {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
       overflow: hidden;
+      background: var(--surface);
     }
 
-    .connect h2 {
-      max-width: 760px;
-      margin: 0 auto;
+    .explore-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 26px;
+      padding: 20px 22px;
+      border-top: 1px solid var(--border-muted);
     }
 
-    .connect p {
-      max-width: 650px;
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: 15px;
+    .explore-item:first-child {
+      border-top: 0;
     }
 
-    .socials {
+    .explore-item h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .explore-item p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    /* PRINCIPLE */
+
+    .principle {
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      background: var(--bg-subtle);
+    }
+
+    .principle blockquote {
+      margin: 0;
+      color: var(--text);
+      font: 700 clamp(20px, 2.5vw, 28px)/1.5 Manrope, sans-serif;
+      letter-spacing: -.025em;
+    }
+
+    .principle p {
+      margin: 20px 0 0;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* SOCIAL */
+
+    .social-panel {
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .social-panel h2 {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .social-panel > p {
+      max-width: 680px;
+      margin: 16px auto 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .social-buttons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
-    .social-btn {
+    .social-button {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 12px 17px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255,255,255,.035);
+      min-height: 44px;
+      padding: 0 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-subtle);
       color: var(--text);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      transition: .2s ease;
+      transition: transform .18s ease, border-color .18s ease;
     }
 
-    .social-btn:hover {
+    .social-button:hover {
       transform: translateY(-2px);
-      border-color: rgba(120,168,255,.38);
-      background: rgba(120,168,255,.08);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
     }
 
-    .social-note {
-      margin-top: 17px !important;
-      font: 500 11px/1.6 JetBrains Mono, monospace;
-      color: var(--muted-2) !important;
+    .privacy-note {
+      margin-top: 16px !important;
+      color: var(--text-muted) !important;
+      font: 500 10px/1.7 JetBrains Mono, monospace !important;
     }
+
+    /* FOOTER */
 
     footer {
-      width: min(calc(100% - 40px), var(--max));
-      margin: 0 auto;
-      padding: 30px 0 40px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--border-muted);
+      padding: 28px 0 36px;
+    }
+
+    .footer-inner {
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      color: var(--muted-2);
-      font: 500 11px/1.6 JetBrains Mono, monospace;
+      color: var(--text-muted);
+      font-size: 11px;
     }
+
+    .footer-inner a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      color: var(--accent);
+    }
+
+    /* REVEAL */
 
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .65s ease, transform .65s ease;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
     }
 
     .reveal.visible {
@@ -796,324 +873,392 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
       }
-      .reveal { opacity: 1; transform: none; }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
 
-    @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .profile-card { max-width: 620px; }
-      .section-head { grid-template-columns: 1fr; gap: 20px; }
-      .project.featured, .project.compact, .project { grid-column: span 6; min-height: 340px; }
-      .stack-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; }
+    /* RESPONSIVE */
+
+    @media (max-width: 920px) {
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .focus-card {
+        min-height: 0;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .explore-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
     }
 
-    @media (max-width: 780px) {
-      .shell { width: min(calc(100% - 26px), var(--max)); }
-      .nav-wrap { top: 10px; }
-      .nav { padding: 9px 10px 9px 12px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .nav {
+        flex-wrap: wrap;
+        padding: 10px 0;
+      }
+
+      .brand {
+        margin-right: auto;
+      }
+
+      .brand-name {
+        display: none;
+      }
+
       .nav-links {
         order: 4;
         width: 100%;
+        display: none;
         flex-direction: column;
         align-items: stretch;
-        display: none;
         margin: 0;
-        padding: 8px 0 2px;
-        border-top: 1px solid var(--line);
+        padding: 8px 0 0;
+        border-top: 1px solid var(--border-muted);
       }
-      .nav.open .nav-links { display: flex; }
-      .nav-links a { display: block; padding: 11px 12px; }
-      .nav-actions { margin-left: auto; }
-      .menu-btn { display: inline-grid; place-items: center; }
-      .hero { padding-top: 128px; }
-      .hero h1 { font-size: clamp(48px, 15vw, 72px); }
-      .section { padding: 78px 0; }
-      .project.featured, .project.compact, .project { grid-column: 1 / -1; min-height: 320px; }
-      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-      .connect { padding: 34px 20px; }
-      footer { width: min(calc(100% - 26px), var(--max)); flex-direction: column; }
+
+      .nav.open .nav-links {
+        display: flex;
+      }
+
+      .nav-links a {
+        text-align: center;
+      }
+
+      .menu-button {
+        display: grid;
+      }
+
+      .hero {
+        padding-top: 118px;
+      }
+
+      .hero-visual {
+        margin-top: 30px;
+      }
+
+      .hero-visual img {
+        min-height: 180px;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .icon-strip {
+        justify-content: flex-start;
+      }
+
+      .social-panel {
+        padding: 30px 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
     }
 
-    @media (max-width: 560px) {
-      .brand .brand-name { display: none; }
-      .stack-grid { grid-template-columns: 1fr; }
-      .hero-actions .btn { width: 100%; }
-      .profile-card { padding: 14px; border-radius: 20px; }
-      .project { padding: 22px; }
-      .about-card { padding: 23px; }
+    @media (max-width: 520px) {
+      .container {
+        width: min(calc(100% - 22px), var(--max));
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 15vw, 58px);
+      }
+
+      .hero-actions .badge-button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .project-card {
+        min-height: 0;
+      }
+
+      .principle {
+        padding: 26px 22px;
+      }
     }
   </style>
 </head>
-<body>
-  <a class="skip-link" href="#main" data-i18n="skip">Ugrás a tartalomhoz</a>
 
-  <div class="nav-wrap">
-    <nav class="nav shell" aria-label="Primary navigation">
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <header class="nav-shell">
+    <nav class="nav container" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Budai Bence home">
-        <span class="brand-mark">BB</span>
+        <img class="brand-avatar" src="https://avatars.githubusercontent.com/u/145671524?v=4" alt="" width="34" height="34">
         <span class="brand-name">Budai Bence</span>
       </a>
 
       <div class="nav-links">
-        <a href="#work" data-i18n="nav.work">Munkáim</a>
-        <a href="#stack" data-i18n="nav.stack">Stack</a>
-        <a href="#about" data-i18n="nav.about">Rólam</a>
-        <a href="#connect" data-i18n="nav.connect">Kapcsolódás</a>
-        <a href="project/" data-i18n="nav.client">Ügyfél hozzáférés</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#stack" data-i18n="nav.stack">Tech</a>
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#exploring" data-i18n="nav.exploring">Exploring</a>
+        <a href="#elsewhere" data-i18n="nav.elsewhere">Elsewhere</a>
       </div>
 
       <div class="nav-actions">
-        <div class="lang" aria-label="Language">
-          <button type="button" data-lang="hu" class="active">HU</button>
-          <button type="button" data-lang="en">EN</button>
+        <div class="segmented" aria-label="Language switcher">
+          <button type="button" data-lang="en" class="active">EN</button>
+          <button type="button" data-lang="hu">HU</button>
         </div>
-        <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <span id="theme-icon" aria-hidden="true">◐</span>
+        </button>
+
+        <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
+        </button>
       </div>
     </nav>
-  </div>
+  </header>
 
   <main id="main">
     <section class="hero" id="top">
-      <div class="hero-grid shell">
-        <div>
-          <div class="eyebrow" data-i18n="hero.eyebrow">Software developer · systems builder</div>
-          <h1 data-i18n-html="hero.title">Megbízható szoftvert építek <span class="gradient-text">valódi workflow-kra.</span></h1>
-          <p class="hero-copy" data-i18n="hero.copy">
-            .NET backendek, API-k, automatizálás, infrastruktúra és fejlesztői eszközök. Azokat a rendszereket szeretem, ahol a kód nem csak jól néz ki, hanem napi problémákat old meg.
-          </p>
+      <div class="container hero-inner">
+        <div class="hello" data-i18n="hero.hello">Hi, I’m Bence 👋</div>
+        <h1>Budai Bence</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Software Developer building backend systems, automation, and infrastructure</p>
 
-          <div class="hero-actions">
-            <a class="btn primary" href="#work">
-              <span data-i18n="hero.work">Kiemelt projektek</span>
-              <span aria-hidden="true">↓</span>
-            </a>
-            <a class="btn" href="https://github.com/itsmebencebudai" target="_blank" rel="noopener noreferrer">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.22c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.3-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.94 10.94 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.15v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
-              GitHub
-            </a>
-            <a class="btn" id="cv-download" href="Budai_Bence_CV_HU.pdf" download>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-              <span data-i18n="hero.cv">CV letöltés</span>
-            </a>
-            <a class="btn" id="hero-linkedin" href="#" target="_blank" rel="noopener noreferrer" hidden>LinkedIn</a>
-          </div>
-
-          <div class="hero-note">
-            <span data-i18n="hero.focus">Fókusz: backend · automation · tooling</span>
-            <span data-i18n="hero.location">Budapest, Hungary</span>
-          </div>
+        <div class="hero-visual reveal">
+          <img
+            src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/80728820-e06b-4f96-9c9e-9df46f0cc0a5"
+            alt="Animated developer workspace"
+            fetchpriority="high">
         </div>
 
-        <aside class="profile-card reveal" aria-label="Developer profile">
-          <div class="profile-top">
-            <img class="avatar" src="https://avatars.githubusercontent.com/u/145671524?v=4" alt="Budai Bence GitHub avatar" width="62" height="62">
-            <div>
-              <p class="profile-name">Budai Bence</p>
-              <div class="profile-role" data-i18n="profile.role">Software Developer · IT</div>
-            </div>
-          </div>
-          <div class="profile-terminal" aria-label="Technical focus">
-            <div class="terminal-bar"><i></i><i></i><i></i></div>
-            <span class="terminal-line"><span class="terminal-prompt">bence@dev</span>:~$ profile</span>
-            <span class="terminal-line">&nbsp;</span>
-            <span class="terminal-line"><span class="terminal-key">backend</span>   <span class="terminal-value">C# · ASP.NET Core · REST</span></span>
-            <span class="terminal-line"><span class="terminal-key">data</span>      <span class="terminal-value">SQL Server · EF Core</span></span>
-            <span class="terminal-line"><span class="terminal-key">systems</span>   <span class="terminal-value">IIS · Docker · Tailscale</span></span>
-            <span class="terminal-line"><span class="terminal-key">tooling</span>   <span class="terminal-value">PowerShell · MCP · Git</span></span>
-            <span class="terminal-line"><span class="terminal-key">clients</span>   <span class="terminal-value">Android · Web</span></span>
-            <span class="terminal-line">&nbsp;</span>
-            <span class="terminal-line terminal-muted" data-i18n="profile.note">> building, testing, shipping</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section shell" id="work">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker" data-i18n="work.kicker">// selected work</div>
-          <h2 data-i18n-html="work.title">Nem csak demók. <span class="gradient-text">Használható rendszerek.</span></h2>
-        </div>
-        <p class="section-intro" data-i18n="work.intro">
-          Nyílt forrású eszközök, saját infrastruktúra és privát rendszermérnöki projektek. A publikus munkáknál közvetlenül a forráskódhoz jutsz.
-        </p>
-      </div>
-
-      <div class="work-grid">
-        <a class="project featured reveal" href="https://github.com/itsmebencebudai/clast" target="_blank" rel="noopener noreferrer">
-          <div class="project-top">
-            <span class="badge public" data-i18n="project.clast.badge">Public · open source</span>
-            <span class="project-arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="project-body">
-            <h3>clast / CopyLast</h3>
-            <p data-i18n="project.clast.copy">
-              PowerShell segédeszköz, amely az előző parancsot és annak látható kimenetét másolja a vágólapra transcript-alapú megoldással — prompt wrapper nélkül.
-            </p>
-            <div class="tags"><span class="tag">PowerShell 7</span><span class="tag">Windows</span><span class="tag">CLI tooling</span><span class="tag">MIT</span></div>
-          </div>
-        </a>
-
-        <a class="project compact reveal" href="https://github.com/itsmebencebudai/tarkov_helper" target="_blank" rel="noopener noreferrer">
-          <div class="project-top">
-            <span class="badge public" data-i18n="project.tarkov.badge">Public · side project</span>
-            <span class="project-arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="project-body">
-            <h3>Tarkov Document Counter</h3>
-            <p data-i18n="project.tarkov.copy">Könnyű webes tracker dokumentum-követelményekhez, helyi állapotmentéssel és egyszerű futtatási workflow-val.</p>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">LocalStorage</span></div>
-          </div>
-        </a>
-
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="badge private" data-i18n="project.systems.badge">Private · systems work</span>
-          </div>
-          <div class="project-body">
-            <h3 data-i18n="project.systems.title">Backend & workflow systems</h3>
-            <p data-i18n="project.systems.copy">
-              ASP.NET Core web/API rendszerek, SQL Server, hitelesítés, fájl- és esemény workflow-k, admin felületek és hardverhez kapcsolódó integrációk.
-            </p>
-            <div class="tags"><span class="tag">.NET</span><span class="tag">ASP.NET Core</span><span class="tag">SQL Server</span><span class="tag">OAuth</span></div>
-          </div>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top">
-            <span class="badge live" data-i18n="project.lab.badge">Homelab · running</span>
-          </div>
-          <div class="project-body">
-            <h3 data-i18n="project.lab.title">Homelab platform</h3>
-            <p data-i18n="project.lab.copy">
-              Saját, több szolgáltatást futtató infrastruktúra távoli eléréssel, DNS-sel, konténerekkel, monitoringgal és automatizált adminisztrációval.
-            </p>
-            <div class="tags"><span class="tag">Windows Server</span><span class="tag">Docker</span><span class="tag">Tailscale</span><span class="tag">Pi-hole</span><span class="tag">Nextcloud</span></div>
-          </div>
-        </article>
-
-        <a class="project reveal" href="https://github.com/itsmebencebudai/itsmebencebudai.github.io" target="_blank" rel="noopener noreferrer">
-          <div class="project-top">
-            <span class="badge public" data-i18n="project.portfolio.badge">Public · this site</span>
-            <span class="project-arrow" aria-hidden="true">↗</span>
-          </div>
-          <div class="project-body">
-            <h3 data-i18n="project.portfolio.title">Portfolio source</h3>
-            <p data-i18n="project.portfolio.copy">Ez az oldal is nyílt forrású: egy gyors, framework nélküli, kétnyelvű statikus portfólió GitHub Pages deploymenttel.</p>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span></div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section shell" id="stack">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker" data-i18n="stack.kicker">// stack</div>
-          <h2 data-i18n-html="stack.title">A technológia csak akkor ér valamit, ha <span class="gradient-text">összeáll rendszerré.</span></h2>
-        </div>
-        <p class="section-intro" data-i18n="stack.intro">A fő fókuszom a .NET ökoszisztéma, de a teljes út érdekel az API-tól a deploymenten át a kliensig.</p>
-      </div>
-
-      <div class="stack-grid">
-        <div class="stack-card reveal">
-          <div class="icon">{ }</div>
-          <h3 data-i18n="stack.backend">Backend</h3>
-          <div class="stack-list"><span>C#</span><span>.NET 9</span><span>ASP.NET Core</span><span>REST APIs</span><span>EF Core</span></div>
-        </div>
-        <div class="stack-card reveal">
-          <div class="icon">DB</div>
-          <h3 data-i18n="stack.data">Data & Identity</h3>
-          <div class="stack-list"><span>SQL Server</span><span>JWT</span><span>OAuth</span><span>Microsoft Entra ID</span></div>
-        </div>
-        <div class="stack-card reveal">
-          <div class="icon">OPS</div>
-          <h3 data-i18n="stack.ops">Infrastructure</h3>
-          <div class="stack-list"><span>IIS</span><span>Docker</span><span>Tailscale</span><span>Windows Server</span><span>Linux</span></div>
-        </div>
-        <div class="stack-card reveal">
-          <div class="icon">CLI</div>
-          <h3 data-i18n="stack.tools">Automation & Tooling</h3>
-          <div class="stack-list"><span>PowerShell</span><span>Git</span><span>GitHub</span><span>MCP</span><span>Android</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell" id="about">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker" data-i18n="about.kicker">// about</div>
-          <h2 data-i18n-html="about.title">Fejlesztés, üzemeltetés és <span class="gradient-text">kíváncsiság egy helyen.</span></h2>
-        </div>
-        <p class="section-intro" data-i18n="about.intro">Szeretem végigérteni a rendszert: mitől működik, hol törhet el, hogyan lehet mérni, tesztelni és egyszerűbben üzemeltetni.</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card reveal">
-          <h3 data-i18n="about.card.title">How I build</h3>
-          <p data-i18n="about.card.copy">
-            A backend fejlesztést rendszeroldalról közelítem: autentikáció, adatmodell, deployment, naplózás, hálózat és operáció ugyanúgy része a megoldásnak, mint maga a feature.
-          </p>
-        </div>
-
-        <div class="about-card reveal">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-label" data-i18n="about.work.label">Experience</div>
-              <div>
-                <h3 class="timeline-title" data-i18n="about.work.title">IT Intern / Software Development</h3>
-                <div class="timeline-org" data-i18n="about.work.org">HUN-REN Hungarian Research Network</div>
-                <div class="timeline-copy" data-i18n="about.work.copy">ASP.NET Core web és API fejlesztés, SQL Server, IIS, webalkalmazás-karbantartás és IT támogatás.</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-label" data-i18n="about.edu.label">Education</div>
-              <div>
-                <h3 class="timeline-title" data-i18n="about.edu.title">Üzemmérnök-informatikus (BProf)</h3>
-                <div class="timeline-org" data-i18n="about.edu.org">Óbudai Egyetem · Neumann János Informatikai Kar</div>
-                <div class="timeline-copy" data-i18n="about.edu.copy">Szoftverfejlesztés, operációs rendszerek, adatbázisok és hálózatok.</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-label" data-i18n="about.lab.label">Practice</div>
-              <div>
-                <h3 class="timeline-title" data-i18n="about.lab.title">Self-hosted lab & developer tooling</h3>
-                <div class="timeline-org">Windows · Linux · local AI · automation</div>
-                <div class="timeline-copy" data-i18n="about.lab.copy">Saját rendszereken kísérletezem deploymenttel, hálózatokkal, automatizálással és fejlesztői agent workflow-kkal.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell" id="connect">
-      <div class="connect reveal">
-        <div class="kicker" data-i18n="connect.kicker">// socials only</div>
-        <h2 data-i18n-html="connect.title">Találkozzunk ott, ahol a <span class="gradient-text">munka is látszik.</span></h2>
-        <p data-i18n="connect.copy">A kapcsolatfelvételt szándékosan a szakmai közösségi profilokra korlátozom. Telefonszámot és közvetlen e-mail címet nem teszek közzé ezen az oldalon.</p>
-        <div class="socials">
-          <a class="social-btn" href="https://github.com/itsmebencebudai" target="_blank" rel="noopener noreferrer">
+        <div class="hero-actions">
+          <a class="badge-button primary" href="https://github.com/itsmebencebudai" target="_blank" rel="noopener noreferrer">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.22c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.3-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.94 10.94 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.15v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
             GitHub
           </a>
-          <a class="social-btn" id="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" hidden>in&nbsp;&nbsp;LinkedIn</a>
+          <a class="badge-button" href="https://github.com/itsmebencebudai?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="hero.repositories">Repositories</a>
+          <a class="badge-button" href="#work" data-i18n="hero.work">Featured work</a>
+          <a class="badge-button" id="hero-linkedin" href="#" target="_blank" rel="noopener noreferrer" hidden>LinkedIn</a>
         </div>
-        <p class="social-note" id="linkedin-note" data-i18n="connect.linkedinPending">LinkedIn gomb előkészítve — a pontos profil URL megadása után aktiválható.</p>
+
+        <div class="hero-meta">
+          <span data-i18n="hero.location">Budapest, Hungary</span>
+          <span data-i18n="hero.focus">C# · .NET · PowerShell · Infrastructure</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="about.label">About me</div>
+            <h2 data-i18n="about.title">Application development meets operations.</h2>
+          </div>
+          <p data-i18n="about.lead">I like following software all the way from API design and data models to deployment, networking and the tools that make the next change easier to ship.</p>
+        </div>
+
+        <div class="about-copy reveal">
+          <p data-i18n-html="about.p1">I’m a software developer from <strong>Budapest, Hungary</strong>, working mainly with <strong>C# and .NET</strong>. I enjoy building backend-heavy systems and then following them all the way into production: APIs, SQL Server, deployment, Windows infrastructure, PowerShell automation, and the tooling around them.</p>
+          <p data-i18n-html="about.p2">I’m most interested in the point where <strong>application development meets operations</strong>. That is why a lot of my work and side projects naturally drift toward automation, self-hosting, developer tooling, local AI, and MCP integrations.</p>
+          <p data-i18n-html="about.p3">I’m also studying <strong>Computer Science Engineering (BProf)</strong> at <strong>Óbuda University — John von Neumann Faculty of Informatics</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="stack.label">Tech I work with</div>
+            <h2 data-i18n="stack.title">A practical stack for shipping systems.</h2>
+          </div>
+          <p data-i18n="stack.lead">The same core stack as my GitHub profile, expanded with the infrastructure and identity pieces I work with in real projects.</p>
+        </div>
+
+        <div class="icon-strip reveal" aria-label="Core technology stack">
+          <img src="https://skillicons.dev/icons?i=cs,dotnet,powershell,windows,docker,git,github,visualstudio,vscode,raspberrypi&perline=10" alt="C Sharp, .NET, PowerShell, Windows, Docker, Git, GitHub, Visual Studio, VS Code and Raspberry Pi icons" loading="lazy">
+        </div>
+
+        <div class="chip-row reveal">
+          <span class="chip"><span class="chip-dot"></span>ASP.NET Core</span>
+          <span class="chip"><span class="chip-dot"></span>Entity Framework Core</span>
+          <span class="chip"><span class="chip-dot"></span>SQL Server</span>
+          <span class="chip"><span class="chip-dot"></span>GitHub Actions</span>
+          <span class="chip"><span class="chip-dot"></span>IIS</span>
+          <span class="chip"><span class="chip-dot"></span>Tailscale</span>
+          <span class="chip"><span class="chip-dot"></span>Microsoft Entra ID</span>
+          <span class="chip"><span class="chip-dot"></span>Android</span>
+        </div>
+
+        <div class="focus-grid" style="margin-top: 28px;">
+          <article class="focus-card reveal">
+            <div class="focus-icon">{ }</div>
+            <h3 data-i18n="focus.backend.title">Backend systems</h3>
+            <p data-i18n="focus.backend.copy">Designing APIs and application services with C# / .NET / ASP.NET Core, backed by SQL Server and Entity Framework Core.</p>
+          </article>
+
+          <article class="focus-card reveal">
+            <div class="focus-icon">PS</div>
+            <h3 data-i18n="focus.automation.title">Automation & delivery</h3>
+            <p data-i18n="focus.automation.copy">Using PowerShell and GitHub workflows to turn repetitive setup, deployment, validation and maintenance work into repeatable processes.</p>
+          </article>
+
+          <article class="focus-card reveal">
+            <div class="focus-icon">OPS</div>
+            <h3 data-i18n="focus.infrastructure.title">Infrastructure</h3>
+            <p data-i18n="focus.infrastructure.copy">Working with Windows Server, IIS, Docker, networking and self-hosted services so the application and its environment work as one system.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="work.label">Featured work</div>
+            <h2 data-i18n="work.title">Useful work over demo-only projects.</h2>
+          </div>
+          <p data-i18n="work.lead">Public repositories link directly to source. Private or internal systems are described at a higher level without exposing sensitive implementation details.</p>
+        </div>
+
+        <div class="project-grid">
+          <a class="project-card reveal" href="https://github.com/itsmebencebudai/clast" target="_blank" rel="noopener noreferrer">
+            <div class="project-top">
+              <span class="project-status" data-i18n="project.clast.status">Public · open source</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </div>
+            <img class="project-icon" src="https://skillicons.dev/icons?i=powershell" alt="" width="58" height="58" loading="lazy">
+            <h3>CopyLast / clast</h3>
+            <p data-i18n="project.clast.copy">A PowerShell 7 utility for copying the previous command together with the output you actually saw. It uses the session transcript without replacing or wrapping the native prompt.</p>
+            <div class="project-tags"><span>PowerShell 7</span><span>Windows</span><span>CLI</span><span>MIT</span></div>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/itsmebencebudai/tarkov_helper" target="_blank" rel="noopener noreferrer">
+            <div class="project-top">
+              <span class="project-status" data-i18n="project.tarkov.status">Public · side project</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
+            </div>
+            <img class="project-icon" src="https://skillicons.dev/icons?i=js,html,css" alt="" width="116" height="58" loading="lazy">
+            <h3>Tarkov Document Counter</h3>
+            <p data-i18n="project.tarkov.copy">A lightweight browser-based tracker for document requirements with local persistence and simple start scripts for development access.</p>
+            <div class="project-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span><span>LocalStorage</span></div>
+          </a>
+
+          <article class="project-card reveal">
+            <div class="project-top">
+              <span class="project-status private" data-i18n="project.systems.status">Private · systems work</span>
+            </div>
+            <div class="project-icon fallback" aria-hidden="true">API</div>
+            <h3 data-i18n="project.systems.title">Backend & workflow systems</h3>
+            <p data-i18n="project.systems.copy">ASP.NET Core web and API systems with SQL Server, authentication, workflow automation, admin interfaces, deployment and hardware-adjacent integrations.</p>
+            <div class="project-tags"><span>C#</span><span>ASP.NET Core</span><span>SQL Server</span><span>OAuth</span><span>IIS</span></div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-top">
+              <span class="project-status" data-i18n="project.homelab.status">Homelab · running systems</span>
+            </div>
+            <div class="project-icon fallback" aria-hidden="true">LAB</div>
+            <h3 data-i18n="project.homelab.title">Self-hosted homelab</h3>
+            <p data-i18n="project.homelab.copy">A practical environment for self-hosting, networking, remote access, containers, monitoring and experimenting with deployment and developer tooling.</p>
+            <div class="project-tags"><span>Windows Server</span><span>Docker</span><span>Tailscale</span><span>Pi-hole</span><span>Nextcloud</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="exploring">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label" data-i18n="explore.label">What I’m exploring now</div>
+            <h2 data-i18n="explore.title">The edges around everyday development.</h2>
+          </div>
+          <p data-i18n="explore.lead">These are the areas I keep returning to because they improve how software is built, operated and iterated on.</p>
+        </div>
+
+        <div class="explore-list reveal">
+          <div class="explore-item">
+            <h3 data-i18n="explore.ai.title">Local AI & coding models</h3>
+            <p data-i18n="explore.ai.copy">Running useful development workflows locally instead of depending on cloud inference for everything.</p>
+          </div>
+          <div class="explore-item">
+            <h3 data-i18n="explore.mcp.title">MCP & agent tooling</h3>
+            <p data-i18n="explore.mcp.copy">Giving coding agents better, safer access to real systems and developer workflows.</p>
+          </div>
+          <div class="explore-item">
+            <h3 data-i18n="explore.lab.title">Homelab infrastructure</h3>
+            <p data-i18n="explore.lab.copy">Self-hosting, networking, remote access and the operational side of keeping systems available.</p>
+          </div>
+          <div class="explore-item">
+            <h3 data-i18n="explore.dx.title">Developer experience</h3>
+            <p data-i18n="explore.dx.copy">Small tools and automation that remove friction from everyday engineering work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="principles">
+      <div class="container">
+        <div class="principle reveal">
+          <blockquote data-i18n="principle.quote">“I like software that is useful beyond the happy-path demo: understandable architecture, repeatable deployment, useful diagnostics, and less manual work the second time around.”</blockquote>
+          <p data-i18n="principle.copy">That usually means thinking about the API, database, infrastructure, automation and operator experience together rather than treating deployment as something that happens after the code is finished.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="elsewhere">
+      <div class="container">
+        <div class="social-panel reveal">
+          <div class="section-label" data-i18n="social.label">Elsewhere</div>
+          <h2 data-i18n="social.title">Find me where the work is visible.</h2>
+          <p data-i18n="social.copy">I keep public contact limited to professional social profiles. My phone number and direct email address are intentionally not published on this site.</p>
+
+          <div class="social-buttons">
+            <a class="social-button" href="https://github.com/itsmebencebudai" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.22c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.39.97.1-.75.4-1.27.74-1.56-2.57-.3-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a10.94 10.94 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.15v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+              GitHub
+            </a>
+            <a class="social-button" href="https://github.com/itsmebencebudai?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="social.repos">Browse repositories</a>
+            <a class="social-button" id="linkedin-link" href="#" target="_blank" rel="noopener noreferrer" hidden>LinkedIn</a>
+          </div>
+
+          <p class="privacy-note" data-i18n="social.note">Building, automating, learning, repeating.</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>© <span id="year"></span> Budai Bence</span>
-    <span data-i18n="footer.note">Built without a framework · hosted on GitHub Pages</span>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Budai Bence</span>
+      <span><a href="https://github.com/itsmebencebudai/itsmebencebudai.github.io" target="_blank" rel="noopener noreferrer" data-i18n="footer.source">View site source on GitHub</a></span>
+    </div>
   </footer>
 
   <script>
@@ -1122,199 +1267,244 @@
       linkedin: ""
     };
 
-    const copy = {
-      hu: {
-        "skip": "Ugrás a tartalomhoz",
-        "nav.work": "Munkáim",
-        "nav.stack": "Stack",
-        "nav.about": "Rólam",
-        "nav.connect": "Kapcsolódás",
-        "nav.client": "Ügyfél hozzáférés",
-        "hero.eyebrow": "Software developer · systems builder",
-        "hero.title": "Megbízható szoftvert építek <span class=\"gradient-text\">valódi workflow-kra.</span>",
-        "hero.copy": ".NET backendek, API-k, automatizálás, infrastruktúra és fejlesztői eszközök. Azokat a rendszereket szeretem, ahol a kód nem csak jól néz ki, hanem napi problémákat old meg.",
-        "hero.work": "Kiemelt projektek",
-        "hero.cv": "CV letöltés",
-        "hero.focus": "Fókusz: backend · automation · tooling",
-        "hero.location": "Budapest, Hungary",
-        "profile.role": "Software Developer · IT",
-        "profile.note": "> building, testing, shipping",
-        "work.kicker": "// selected work",
-        "work.title": "Nem csak demók. <span class=\"gradient-text\">Használható rendszerek.</span>",
-        "work.intro": "Nyílt forrású eszközök, saját infrastruktúra és privát rendszermérnöki projektek. A publikus munkáknál közvetlenül a forráskódhoz jutsz.",
-        "project.clast.badge": "Public · open source",
-        "project.clast.copy": "PowerShell segédeszköz, amely az előző parancsot és annak látható kimenetét másolja a vágólapra transcript-alapú megoldással — prompt wrapper nélkül.",
-        "project.tarkov.badge": "Public · side project",
-        "project.tarkov.copy": "Könnyű webes tracker dokumentum-követelményekhez, helyi állapotmentéssel és egyszerű futtatási workflow-val.",
-        "project.systems.badge": "Private · systems work",
-        "project.systems.title": "Backend & workflow systems",
-        "project.systems.copy": "ASP.NET Core web/API rendszerek, SQL Server, hitelesítés, fájl- és esemény workflow-k, admin felületek és hardverhez kapcsolódó integrációk.",
-        "project.lab.badge": "Homelab · running",
-        "project.lab.title": "Homelab platform",
-        "project.lab.copy": "Saját, több szolgáltatást futtató infrastruktúra távoli eléréssel, DNS-sel, konténerekkel, monitoringgal és automatizált adminisztrációval.",
-        "project.portfolio.badge": "Public · this site",
-        "project.portfolio.title": "Portfolio source",
-        "project.portfolio.copy": "Ez az oldal is nyílt forrású: egy gyors, framework nélküli, kétnyelvű statikus portfólió GitHub Pages deploymenttel.",
-        "stack.kicker": "// stack",
-        "stack.title": "A technológia csak akkor ér valamit, ha <span class=\"gradient-text\">összeáll rendszerré.</span>",
-        "stack.intro": "A fő fókuszom a .NET ökoszisztéma, de a teljes út érdekel az API-tól a deploymenten át a kliensig.",
-        "stack.backend": "Backend",
-        "stack.data": "Data & Identity",
-        "stack.ops": "Infrastructure",
-        "stack.tools": "Automation & Tooling",
-        "about.kicker": "// about",
-        "about.title": "Fejlesztés, üzemeltetés és <span class=\"gradient-text\">kíváncsiság egy helyen.</span>",
-        "about.intro": "Szeretem végigérteni a rendszert: mitől működik, hol törhet el, hogyan lehet mérni, tesztelni és egyszerűbben üzemeltetni.",
-        "about.card.title": "How I build",
-        "about.card.copy": "A backend fejlesztést rendszeroldalról közelítem: autentikáció, adatmodell, deployment, naplózás, hálózat és operáció ugyanúgy része a megoldásnak, mint maga a feature.",
-        "about.work.label": "Experience",
-        "about.work.title": "IT Intern / Software Development",
-        "about.work.org": "HUN-REN Hungarian Research Network",
-        "about.work.copy": "ASP.NET Core web és API fejlesztés, SQL Server, IIS, webalkalmazás-karbantartás és IT támogatás.",
-        "about.edu.label": "Education",
-        "about.edu.title": "Üzemmérnök-informatikus (BProf)",
-        "about.edu.org": "Óbudai Egyetem · Neumann János Informatikai Kar",
-        "about.edu.copy": "Szoftverfejlesztés, operációs rendszerek, adatbázisok és hálózatok.",
-        "about.lab.label": "Practice",
-        "about.lab.title": "Self-hosted lab & developer tooling",
-        "about.lab.copy": "Saját rendszereken kísérletezem deploymenttel, hálózatokkal, automatizálással és fejlesztői agent workflow-kkal.",
-        "connect.kicker": "// socials only",
-        "connect.title": "Találkozzunk ott, ahol a <span class=\"gradient-text\">munka is látszik.</span>",
-        "connect.copy": "A kapcsolatfelvételt szándékosan a szakmai közösségi profilokra korlátozom. Telefonszámot és közvetlen e-mail címet nem teszek közzé ezen az oldalon.",
-        "connect.linkedinPending": "LinkedIn gomb előkészítve — a pontos profil URL megadása után aktiválható.",
-        "footer.note": "Built without a framework · hosted on GitHub Pages"
-      },
+    const translations = {
       en: {
         "skip": "Skip to content",
-        "nav.work": "Work",
-        "nav.stack": "Stack",
         "nav.about": "About",
-        "nav.connect": "Connect",
-        "nav.client": "Client access",
-        "hero.eyebrow": "Software developer · systems builder",
-        "hero.title": "I build reliable software for <span class=\"gradient-text\">real workflows.</span>",
-        "hero.copy": ".NET backends, APIs, automation, infrastructure and developer tooling. I enjoy systems where code does more than look good — it removes real friction from everyday work.",
-        "hero.work": "Selected work",
-        "hero.cv": "Download CV",
-        "hero.focus": "Focus: backend · automation · tooling",
+        "nav.stack": "Tech",
+        "nav.work": "Work",
+        "nav.exploring": "Exploring",
+        "nav.elsewhere": "Elsewhere",
+        "hero.hello": "Hi, I’m Bence 👋",
+        "hero.subtitle": "Software Developer building backend systems, automation, and infrastructure",
+        "hero.repositories": "Repositories",
+        "hero.work": "Featured work",
         "hero.location": "Budapest, Hungary",
-        "profile.role": "Software Developer · IT",
-        "profile.note": "> building, testing, shipping",
-        "work.kicker": "// selected work",
-        "work.title": "Not just demos. <span class=\"gradient-text\">Systems people can use.</span>",
-        "work.intro": "Open-source utilities, self-hosted infrastructure and private systems-engineering work. Public projects link directly to their source.",
-        "project.clast.badge": "Public · open source",
-        "project.clast.copy": "A PowerShell helper that copies the previous command and its visible output to the clipboard using transcription — without wrapping or replacing the shell prompt.",
-        "project.tarkov.badge": "Public · side project",
-        "project.tarkov.copy": "A lightweight web tracker for document requirements with local state persistence and a straightforward run workflow.",
-        "project.systems.badge": "Private · systems work",
+        "hero.focus": "C# · .NET · PowerShell · Infrastructure",
+        "about.label": "About me",
+        "about.title": "Application development meets operations.",
+        "about.lead": "I like following software all the way from API design and data models to deployment, networking and the tools that make the next change easier to ship.",
+        "about.p1": "I’m a software developer from <strong>Budapest, Hungary</strong>, working mainly with <strong>C# and .NET</strong>. I enjoy building backend-heavy systems and then following them all the way into production: APIs, SQL Server, deployment, Windows infrastructure, PowerShell automation, and the tooling around them.",
+        "about.p2": "I’m most interested in the point where <strong>application development meets operations</strong>. That is why a lot of my work and side projects naturally drift toward automation, self-hosting, developer tooling, local AI, and MCP integrations.",
+        "about.p3": "I’m also studying <strong>Computer Science Engineering (BProf)</strong> at <strong>Óbuda University — John von Neumann Faculty of Informatics</strong>.",
+        "stack.label": "Tech I work with",
+        "stack.title": "A practical stack for shipping systems.",
+        "stack.lead": "The same core stack as my GitHub profile, expanded with the infrastructure and identity pieces I work with in real projects.",
+        "focus.backend.title": "Backend systems",
+        "focus.backend.copy": "Designing APIs and application services with C# / .NET / ASP.NET Core, backed by SQL Server and Entity Framework Core.",
+        "focus.automation.title": "Automation & delivery",
+        "focus.automation.copy": "Using PowerShell and GitHub workflows to turn repetitive setup, deployment, validation and maintenance work into repeatable processes.",
+        "focus.infrastructure.title": "Infrastructure",
+        "focus.infrastructure.copy": "Working with Windows Server, IIS, Docker, networking and self-hosted services so the application and its environment work as one system.",
+        "work.label": "Featured work",
+        "work.title": "Useful work over demo-only projects.",
+        "work.lead": "Public repositories link directly to source. Private or internal systems are described at a higher level without exposing sensitive implementation details.",
+        "project.clast.status": "Public · open source",
+        "project.clast.copy": "A PowerShell 7 utility for copying the previous command together with the output you actually saw. It uses the session transcript without replacing or wrapping the native prompt.",
+        "project.tarkov.status": "Public · side project",
+        "project.tarkov.copy": "A lightweight browser-based tracker for document requirements with local persistence and simple start scripts for development access.",
+        "project.systems.status": "Private · systems work",
         "project.systems.title": "Backend & workflow systems",
-        "project.systems.copy": "ASP.NET Core web/API systems, SQL Server, authentication, file and event workflows, admin interfaces and hardware-connected integrations.",
-        "project.lab.badge": "Homelab · running",
-        "project.lab.title": "Homelab platform",
-        "project.lab.copy": "A multi-service self-hosted environment with remote access, DNS, containers, monitoring and automated administration.",
-        "project.portfolio.badge": "Public · this site",
-        "project.portfolio.title": "Portfolio source",
-        "project.portfolio.copy": "This site is open source too: a fast bilingual static portfolio without a framework, deployed through GitHub Pages.",
-        "stack.kicker": "// stack",
-        "stack.title": "Technology matters when it <span class=\"gradient-text\">becomes a system.</span>",
-        "stack.intro": "My main focus is the .NET ecosystem, but I care about the full path from API design through deployment to the client.",
-        "stack.backend": "Backend",
-        "stack.data": "Data & Identity",
-        "stack.ops": "Infrastructure",
-        "stack.tools": "Automation & Tooling",
-        "about.kicker": "// about",
-        "about.title": "Development, operations and <span class=\"gradient-text\">curiosity in one place.</span>",
-        "about.intro": "I like understanding the whole system: what makes it work, where it can fail, how to measure it, test it and make it easier to operate.",
-        "about.card.title": "How I build",
-        "about.card.copy": "I approach backend development as a systems problem: authentication, data models, deployment, logging, networking and operations matter just as much as the feature itself.",
-        "about.work.label": "Experience",
-        "about.work.title": "IT Intern / Software Development",
-        "about.work.org": "HUN-REN Hungarian Research Network",
-        "about.work.copy": "ASP.NET Core web and API development, SQL Server, IIS, web application maintenance and IT support.",
-        "about.edu.label": "Education",
-        "about.edu.title": "Computer Science Engineering (BProf)",
-        "about.edu.org": "Óbuda University · John von Neumann Faculty of Informatics",
-        "about.edu.copy": "Software development, operating systems, databases and networks.",
-        "about.lab.label": "Practice",
-        "about.lab.title": "Self-hosted lab & developer tooling",
-        "about.lab.copy": "I experiment on my own systems with deployment, networking, automation and developer-agent workflows.",
-        "connect.kicker": "// socials only",
-        "connect.title": "Reach me where the <span class=\"gradient-text\">work is visible.</span>",
-        "connect.copy": "I intentionally keep contact on professional social profiles. I do not publish a phone number or direct email address on this site.",
-        "connect.linkedinPending": "LinkedIn button is ready — it will activate once the exact profile URL is added.",
-        "footer.note": "Built without a framework · hosted on GitHub Pages"
+        "project.systems.copy": "ASP.NET Core web and API systems with SQL Server, authentication, workflow automation, admin interfaces, deployment and hardware-adjacent integrations.",
+        "project.homelab.status": "Homelab · running systems",
+        "project.homelab.title": "Self-hosted homelab",
+        "project.homelab.copy": "A practical environment for self-hosting, networking, remote access, containers, monitoring and experimenting with deployment and developer tooling.",
+        "explore.label": "What I’m exploring now",
+        "explore.title": "The edges around everyday development.",
+        "explore.lead": "These are the areas I keep returning to because they improve how software is built, operated and iterated on.",
+        "explore.ai.title": "Local AI & coding models",
+        "explore.ai.copy": "Running useful development workflows locally instead of depending on cloud inference for everything.",
+        "explore.mcp.title": "MCP & agent tooling",
+        "explore.mcp.copy": "Giving coding agents better, safer access to real systems and developer workflows.",
+        "explore.lab.title": "Homelab infrastructure",
+        "explore.lab.copy": "Self-hosting, networking, remote access and the operational side of keeping systems available.",
+        "explore.dx.title": "Developer experience",
+        "explore.dx.copy": "Small tools and automation that remove friction from everyday engineering work.",
+        "principle.quote": "“I like software that is useful beyond the happy-path demo: understandable architecture, repeatable deployment, useful diagnostics, and less manual work the second time around.”",
+        "principle.copy": "That usually means thinking about the API, database, infrastructure, automation and operator experience together rather than treating deployment as something that happens after the code is finished.",
+        "social.label": "Elsewhere",
+        "social.title": "Find me where the work is visible.",
+        "social.copy": "I keep public contact limited to professional social profiles. My phone number and direct email address are intentionally not published on this site.",
+        "social.repos": "Browse repositories",
+        "social.note": "Building, automating, learning, repeating.",
+        "footer.source": "View site source on GitHub"
+      },
+      hu: {
+        "skip": "Ugrás a tartalomhoz",
+        "nav.about": "Rólam",
+        "nav.stack": "Technológiák",
+        "nav.work": "Munkáim",
+        "nav.exploring": "Kísérletek",
+        "nav.elsewhere": "Kapcsolódás",
+        "hero.hello": "Szia, Bence vagyok 👋",
+        "hero.subtitle": "Szoftverfejlesztő — backend rendszerek, automatizálás és infrastruktúra",
+        "hero.repositories": "Repository-k",
+        "hero.work": "Kiemelt munkák",
+        "hero.location": "Budapest, Magyarország",
+        "hero.focus": "C# · .NET · PowerShell · Infrastruktúra",
+        "about.label": "Rólam",
+        "about.title": "Ahol az alkalmazásfejlesztés találkozik az üzemeltetéssel.",
+        "about.lead": "Szeretem a szoftvert az API-tervezéstől és adatmodelltől egészen a deploymentig, hálózatig és a következő módosítást megkönnyítő eszközökig végigkövetni.",
+        "about.p1": "<strong>Budapesti szoftverfejlesztő</strong> vagyok, főként <strong>C# és .NET</strong> technológiákkal dolgozom. Szeretem a backend-központú rendszereket egészen productionig végigvinni: API-k, SQL Server, deployment, Windows infrastruktúra, PowerShell automatizálás és az ezeket körülvevő tooling.",
+        "about.p2": "Leginkább az érdekel, ahol az <strong>alkalmazásfejlesztés és az üzemeltetés találkozik</strong>. Emiatt a munkáim és mellékprojektjeim gyakran automatizálás, self-hosting, fejlesztői eszközök, helyi AI és MCP integrációk felé mennek.",
+        "about.p3": "Emellett az <strong>Óbudai Egyetem Neumann János Informatikai Karán</strong> tanulok <strong>üzemmérnök-informatikus (BProf)</strong> képzésen.",
+        "stack.label": "Technológiák",
+        "stack.title": "Praktikus stack működő rendszerekhez.",
+        "stack.lead": "Ugyanaz a fő technológiai irány, mint a GitHub profilomon, kiegészítve azokkal az infrastruktúra- és identity-elemekkel, amelyeket valódi projektekben használok.",
+        "focus.backend.title": "Backend rendszerek",
+        "focus.backend.copy": "API-k és alkalmazásszolgáltatások tervezése C# / .NET / ASP.NET Core alapon, SQL Serverrel és Entity Framework Core-ral.",
+        "focus.automation.title": "Automatizálás & delivery",
+        "focus.automation.copy": "PowerShell és GitHub workflow-k használata az ismétlődő setup, deployment, validáció és karbantartás automatizálására.",
+        "focus.infrastructure.title": "Infrastruktúra",
+        "focus.infrastructure.copy": "Windows Server, IIS, Docker, hálózatok és self-hosted szolgáltatások, hogy az alkalmazás és a környezete egy rendszerként működjön.",
+        "work.label": "Kiemelt munkák",
+        "work.title": "Használható munka a csak-demó projektek helyett.",
+        "work.lead": "A publikus repository-k közvetlenül a forráskódhoz vezetnek. A privát vagy belső rendszereket magasabb szinten mutatom be érzékeny részletek nélkül.",
+        "project.clast.status": "Publikus · open source",
+        "project.clast.copy": "PowerShell 7 segédeszköz az előző parancs és a ténylegesen látott kimenet együtt történő másolására. A session transcriptet használja a natív prompt lecserélése vagy becsomagolása nélkül.",
+        "project.tarkov.status": "Publikus · mellékprojekt",
+        "project.tarkov.copy": "Könnyű, böngészős tracker dokumentum-követelményekhez helyi állapotmentéssel és egyszerű indító scriptekkel.",
+        "project.systems.status": "Privát · rendszermunka",
+        "project.systems.title": "Backend & workflow rendszerek",
+        "project.systems.copy": "ASP.NET Core web- és API-rendszerek SQL Serverrel, hitelesítéssel, workflow automatizálással, admin felületekkel, deploymenttel és hardverközeli integrációkkal.",
+        "project.homelab.status": "Homelab · futó rendszerek",
+        "project.homelab.title": "Self-hosted homelab",
+        "project.homelab.copy": "Gyakorlati környezet self-hostinghoz, hálózatokhoz, távoli eléréshez, konténerekhez, monitoringhoz, deploymenthez és fejlesztői tooling kísérletekhez.",
+        "explore.label": "Amit most felfedezek",
+        "explore.title": "A mindennapi fejlesztés szélei.",
+        "explore.lead": "Ezekhez a területekhez folyamatosan visszatérek, mert javítják a szoftver fejlesztését, üzemeltetését és iterációját.",
+        "explore.ai.title": "Helyi AI & kódoló modellek",
+        "explore.ai.copy": "Használható fejlesztési workflow-k futtatása lokálisan, nem minden feladathoz cloud inference-re támaszkodva.",
+        "explore.mcp.title": "MCP & agent tooling",
+        "explore.mcp.copy": "Biztonságosabb és jobb hozzáférés biztosítása coding agenteknek valódi rendszerekhez és fejlesztői workflow-khoz.",
+        "explore.lab.title": "Homelab infrastruktúra",
+        "explore.lab.copy": "Self-hosting, hálózatok, távoli elérés és a rendszerek elérhetőségének operációs oldala.",
+        "explore.dx.title": "Developer experience",
+        "explore.dx.copy": "Kisebb eszközök és automatizálások, amelyek csökkentik a mindennapi fejlesztési súrlódást.",
+        "principle.quote": "„Azokat a szoftvereket szeretem, amelyek a happy-path demón túl is hasznosak: érthető architektúra, megismételhető deployment, használható diagnosztika és kevesebb manuális munka másodjára.”",
+        "principle.copy": "Ez általában azt jelenti, hogy az API-ra, adatbázisra, infrastruktúrára, automatizálásra és operátori élményre együtt gondolok, nem pedig úgy, mintha a deployment csak a kód után következne.",
+        "social.label": "Kapcsolódás",
+        "social.title": "Ott találj meg, ahol a munka is látható.",
+        "social.copy": "A nyilvános kapcsolatfelvételt szakmai közösségi profilokra korlátozom. Telefonszámot és közvetlen e-mail címet szándékosan nem teszek közzé ezen az oldalon.",
+        "social.repos": "Repository-k böngészése",
+        "social.note": "Építeni, automatizálni, tanulni, ismételni.",
+        "footer.source": "Az oldal forráskódja GitHubon"
       }
     };
 
+    const root = document.documentElement;
+    const themeColor = document.getElementById("theme-color");
+
+    function effectiveDarkMode() {
+      const selected = root.dataset.theme;
+      if (selected === "dark") return true;
+      if (selected === "light") return false;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    function updateThemeUi() {
+      const dark = effectiveDarkMode();
+      const icon = document.getElementById("theme-icon");
+      if (icon) icon.textContent = dark ? "☀" : "☾";
+      if (themeColor) themeColor.setAttribute("content", dark ? "#0d1117" : "#ffffff");
+    }
+
+    function cycleTheme() {
+      const current = root.dataset.theme || "auto";
+      const next = current === "auto" ? "dark" : current === "dark" ? "light" : "auto";
+      root.dataset.theme = next;
+      localStorage.setItem("preferredTheme", next);
+      updateThemeUi();
+    }
+
     function applyLanguage(lang) {
-      const active = copy[lang] ? lang : "hu";
+      const active = translations[lang] ? lang : "en";
       document.documentElement.lang = active;
       localStorage.setItem("preferredLang", active);
+
       document.querySelectorAll("[data-i18n]").forEach(function(el) {
         const key = el.getAttribute("data-i18n");
-        if (copy[active][key] !== undefined) el.textContent = copy[active][key];
+        if (translations[active][key] !== undefined) {
+          el.textContent = translations[active][key];
+        }
       });
+
       document.querySelectorAll("[data-i18n-html]").forEach(function(el) {
         const key = el.getAttribute("data-i18n-html");
-        if (copy[active][key] !== undefined) el.innerHTML = copy[active][key];
+        if (translations[active][key] !== undefined) {
+          el.innerHTML = translations[active][key];
+        }
       });
+
       document.querySelectorAll("[data-lang]").forEach(function(btn) {
         btn.classList.toggle("active", btn.getAttribute("data-lang") === active);
       });
-      document.title = active === "en" ? "Budai Bence — Software Developer" : "Budai Bence — Szoftverfejlesztő";
-      var cvDownload = document.getElementById("cv-download");
-      if (cvDownload) {
-        cvDownload.href = active === "en" ? "Budai_Bence_CV_EN.pdf" : "Budai_Bence_CV_HU.pdf";
-      }
+
+      document.title = active === "hu"
+        ? "Budai Bence — Szoftverfejlesztő"
+        : "Budai Bence — Software Developer";
     }
 
     function configureSocials() {
-      var linkedin = String(SOCIALS.linkedin || "").trim();
-      var linkedinTargets = [document.getElementById("hero-linkedin"), document.getElementById("linkedin-link")];
-      if (linkedin) {
-        linkedinTargets.forEach(function(link) {
-          if (!link) return;
-          link.href = linkedin;
-          link.hidden = false;
-        });
-        var note = document.getElementById("linkedin-note");
-        if (note) note.hidden = true;
-      }
+      const linkedin = String(SOCIALS.linkedin || "").trim();
+      if (!linkedin) return;
+
+      ["hero-linkedin", "linkedin-link"].forEach(function(id) {
+        const link = document.getElementById(id);
+        if (!link) return;
+        link.href = linkedin;
+        link.hidden = false;
+      });
     }
 
-    document.querySelectorAll("[data-lang]").forEach(function(btn) {
-      btn.addEventListener("click", function() { applyLanguage(btn.getAttribute("data-lang")); });
+    const savedTheme = localStorage.getItem("preferredTheme") || "auto";
+    root.dataset.theme = ["auto", "dark", "light"].includes(savedTheme) ? savedTheme : "auto";
+    updateThemeUi();
+
+    document.getElementById("theme-toggle").addEventListener("click", cycleTheme);
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
+      if (root.dataset.theme === "auto") updateThemeUi();
     });
 
-    var nav = document.querySelector(".nav");
-    var menu = document.querySelector(".menu-btn");
-    if (nav && menu) {
-      menu.addEventListener("click", function() {
-        var isOpen = nav.classList.toggle("open");
-        menu.setAttribute("aria-expanded", String(isOpen));
+    document.querySelectorAll("[data-lang]").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        applyLanguage(btn.getAttribute("data-lang"));
       });
-      nav.querySelectorAll(".nav-links a").forEach(function(link) {
-        link.addEventListener("click", function() {
-          nav.classList.remove("open");
-          menu.setAttribute("aria-expanded", "false");
-        });
-      });
-    }
+    });
 
-    var observer = new IntersectionObserver(function(entries) {
+    const nav = document.querySelector(".nav");
+    const menuToggle = document.getElementById("menu-toggle");
+
+    menuToggle.addEventListener("click", function() {
+      const open = nav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+
+    nav.querySelectorAll(".nav-links a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        nav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.10 });
 
-    document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
+    document.querySelectorAll(".reveal").forEach(function(el) {
+      observer.observe(el);
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
     configureSocials();
-    applyLanguage(localStorage.getItem("preferredLang") || "hu");
+    applyLanguage(localStorage.getItem("preferredLang") || "en");
   </script>
 </body>
 </html>
