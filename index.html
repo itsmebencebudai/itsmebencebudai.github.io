@@ -206,6 +206,323 @@
       top: 16px;
     }
 
+
+    /* LIFE / MOTION LAYER */
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2000;
+      width: 100%;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, var(--accent), var(--purple), var(--green));
+      box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 60%, transparent);
+      pointer-events: none;
+    }
+
+    .pointer-glow {
+      position: fixed;
+      z-index: -1;
+      width: 440px;
+      height: 440px;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate3d(-50%, -50%, 0);
+      background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--accent) 12%, transparent) 0%,
+        color-mix(in srgb, var(--purple) 7%, transparent) 32%,
+        transparent 70%
+      );
+      filter: blur(10px);
+      transition: opacity .28s ease;
+      will-change: left, top, opacity;
+    }
+
+    .pointer-glow.visible {
+      opacity: 1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -80px;
+      z-index: -2;
+      pointer-events: none;
+      opacity: .16;
+      background-image:
+        linear-gradient(color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--text) 6%, transparent) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 72%);
+      animation: gridDrift 24s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(64px, 64px, 0); }
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 4px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .2s ease;
+    }
+
+    .nav-links a.active {
+      color: var(--text);
+      background: var(--bg-subtle);
+    }
+
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .brand-avatar {
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .brand:hover .brand-avatar {
+      transform: rotate(-5deg) scale(1.06);
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .hero h1 {
+      background: linear-gradient(
+        100deg,
+        var(--text) 0%,
+        var(--text) 34%,
+        var(--accent) 50%,
+        var(--purple) 61%,
+        var(--text) 78%,
+        var(--text) 100%
+      );
+      background-size: 220% 100%;
+      background-position: 100% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: nameShimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes nameShimmer {
+      0%, 25% { background-position: 100% 50%; }
+      55%, 70% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .hello {
+      animation: helloFloat 4.6s ease-in-out infinite;
+    }
+
+    @keyframes helloFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .hero-visual {
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1), box-shadow .28s ease;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle at var(--hero-x, 50%) var(--hero-y, 50%),
+          rgba(255,255,255,.17),
+          transparent 34%
+        );
+      opacity: 0;
+      transition: opacity .2s ease;
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-visual:hover {
+      box-shadow: 0 28px 72px color-mix(in srgb, var(--accent) 12%, rgba(0,0,0,.28));
+    }
+
+    .hero-visual:hover::after {
+      opacity: 1;
+    }
+
+    .badge-button,
+    .social-button,
+    .chip {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-button::after,
+    .social-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 28%, rgba(255,255,255,.18) 50%, transparent 72%);
+      transform: translateX(-130%);
+      transition: transform .55s ease;
+      pointer-events: none;
+    }
+
+    .badge-button:hover::after,
+    .social-button:hover::after {
+      transform: translateX(130%);
+    }
+
+    .chip {
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+      background: var(--surface);
+    }
+
+    .chip-dot {
+      animation: chipPulse 2.8s ease-in-out infinite;
+    }
+
+    .chip:nth-child(2n) .chip-dot { animation-delay: .5s; }
+    .chip:nth-child(3n) .chip-dot { animation-delay: 1s; }
+
+    @keyframes chipPulse {
+      0%, 100% { transform: scale(.85); opacity: .65; }
+      50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 4px var(--accent-soft); }
+    }
+
+    .focus-card,
+    .project-card,
+    .principle,
+    .social-panel {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .focus-icon {
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1), box-shadow .28s ease;
+    }
+
+    .focus-card:hover .focus-icon {
+      transform: translateY(-4px) rotate(-3deg);
+      box-shadow: 0 8px 24px var(--accent-soft);
+    }
+
+    .project-status::before {
+      animation: statusPulse 2.4s ease-in-out infinite;
+    }
+
+    .project-status.private::before {
+      animation-delay: .8s;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { box-shadow: 0 0 0 0 transparent; }
+      50% { box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 8%, transparent); }
+    }
+
+    .project-icon {
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .project-card:hover .project-icon {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    .explore-item {
+      position: relative;
+      transition: background .2s ease, padding-left .2s ease;
+    }
+
+    .explore-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 15%;
+      bottom: 15%;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(var(--accent), var(--purple));
+      transform: scaleY(0);
+      transition: transform .22s ease;
+    }
+
+    .explore-item:hover {
+      background: var(--surface-hover);
+      padding-left: 28px;
+    }
+
+    .explore-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .section-label::after {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      margin-left: 8px;
+      vertical-align: middle;
+      background: currentColor;
+      transform-origin: left;
+      animation: labelBreath 3.2s ease-in-out infinite;
+    }
+
+    @keyframes labelBreath {
+      0%, 100% { transform: scaleX(.45); opacity: .35; }
+      50% { transform: scaleX(1); opacity: 1; }
+    }
+
+    .reveal {
+      transition:
+        opacity .62s ease,
+        transform .62s cubic-bezier(.2, .8, .2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .theme-pop {
+      animation: themePop .34s ease;
+    }
+
+    @keyframes themePop {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(16deg) scale(1.18); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .pointer-glow {
+        display: none;
+      }
+
+      .explore-item:hover {
+        padding-left: 22px;
+      }
+    }
+
     /* NAVIGATION */
 
     .nav-shell {
@@ -1006,6 +1323,9 @@
 </head>
 
 <body>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <div class="pointer-glow" id="pointer-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
   <header class="nav-shell">
@@ -1380,6 +1700,119 @@
     const root = document.documentElement;
     const themeColor = document.getElementById("theme-color");
 
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const progressBar = document.getElementById("scroll-progress");
+    const pointerGlow = document.getElementById("pointer-glow");
+
+    function updateScrollProgress() {
+      if (!progressBar) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progressBar.style.transform = "scaleX(" + progress + ")";
+    }
+
+    updateScrollProgress();
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("resize", updateScrollProgress);
+
+    if (!reduceMotion && finePointer && pointerGlow) {
+      let glowX = window.innerWidth / 2;
+      let glowY = window.innerHeight / 3;
+      let targetX = glowX;
+      let targetY = glowY;
+
+      window.addEventListener("pointermove", function(event) {
+        targetX = event.clientX;
+        targetY = event.clientY;
+        pointerGlow.classList.add("visible");
+      }, { passive: true });
+
+      document.documentElement.addEventListener("mouseleave", function() {
+        pointerGlow.classList.remove("visible");
+      });
+
+      const animateGlow = function() {
+        glowX += (targetX - glowX) * .11;
+        glowY += (targetY - glowY) * .11;
+        pointerGlow.style.left = glowX + "px";
+        pointerGlow.style.top = glowY + "px";
+        requestAnimationFrame(animateGlow);
+      };
+      requestAnimationFrame(animateGlow);
+    }
+
+    const heroVisual = document.querySelector(".hero-visual");
+    if (!reduceMotion && finePointer && heroVisual) {
+      heroVisual.addEventListener("pointermove", function(event) {
+        const rect = heroVisual.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const rotateY = (x - .5) * 5;
+        const rotateX = (.5 - y) * 4;
+        heroVisual.style.setProperty("--hero-x", (x * 100).toFixed(1) + "%");
+        heroVisual.style.setProperty("--hero-y", (y * 100).toFixed(1) + "%");
+        heroVisual.style.transform =
+          "perspective(1000px) rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg) translateY(-3px)";
+      });
+
+      heroVisual.addEventListener("pointerleave", function() {
+        heroVisual.style.transform = "";
+        heroVisual.style.removeProperty("--hero-x");
+        heroVisual.style.removeProperty("--hero-y");
+      });
+    }
+
+    if (!reduceMotion && finePointer) {
+      document.querySelectorAll(".focus-card, .project-card").forEach(function(card) {
+        card.addEventListener("pointermove", function(event) {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          const rotateY = (x - .5) * 3.2;
+          const rotateX = (.5 - y) * 2.6;
+          card.style.transform =
+            "perspective(900px) rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg) translateY(-3px)";
+        });
+
+        card.addEventListener("pointerleave", function() {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    document.querySelectorAll(".focus-grid .reveal, .project-grid .reveal, .chip-row .reveal").forEach(function(el, index) {
+      el.style.setProperty("--reveal-delay", Math.min(index * 70, 280) + "ms");
+    });
+
+    const sectionLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    const sectionTargets = sectionLinks
+      .map(function(link) {
+        const id = link.getAttribute("href");
+        const target = document.querySelector(id);
+        return target ? { link: link, target: target } : null;
+      })
+      .filter(Boolean);
+
+    const activeSectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        sectionLinks.forEach(function(link) { link.classList.remove("active"); });
+        const match = sectionTargets.find(function(item) { return item.target === entry.target; });
+        if (match) match.link.classList.add("active");
+      });
+    }, {
+      rootMargin: "-28% 0px -58% 0px",
+      threshold: 0.01
+    });
+
+    sectionTargets.forEach(function(item) {
+      activeSectionObserver.observe(item.target);
+    });
+
+
+
     function effectiveDarkMode() {
       const selected = root.dataset.theme;
       if (selected === "dark") return true;
@@ -1446,7 +1879,15 @@
     root.dataset.theme = ["auto", "dark", "light"].includes(savedTheme) ? savedTheme : "auto";
     updateThemeUi();
 
-    document.getElementById("theme-toggle").addEventListener("click", cycleTheme);
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+      cycleTheme();
+      const icon = document.getElementById("theme-icon");
+      if (icon) {
+        icon.classList.remove("theme-pop");
+        void icon.offsetWidth;
+        icon.classList.add("theme-pop");
+      }
+    });
 
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function() {
       if (root.dataset.theme === "auto") updateThemeUi();
